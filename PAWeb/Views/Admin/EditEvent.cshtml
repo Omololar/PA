@@ -1,0 +1,129 @@
+﻿@model PAWeb.EventViewModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Edit Event";
+
+
+}
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Event</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+
+                <div class="card">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add New Event</h4>
+                            </div>
+                            <div class="modal-body">
+                                @using (Html.BeginForm("EditEvent", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.Id)
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EventName, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EventDescription, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.TextAreaFor(model => model.EventDescription, new { id = "cke", @class = "ckeditor" })
+                                            @Html.ValidationMessageFor(model => model.EventDescription, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EventTheme, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.EventTheme, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.EventTheme, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EventLocation, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.EventLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.EventLocation, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EventImageUrl, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            <input type="file" name="EventImageFile" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" required />
+                                        </div>
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <img src="@Url.Content("~/Content/Images/")@Model.EventImageUrl" width="150" height="150" class="img-upload" alt="Event Image" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EventDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            <input type="text" name="EventDate" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />
+                                            @Html.ValidationMessageFor(model => model.EventDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EventType, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+
+                                            @Html.DropDownListFor(model => model.EventType, (IEnumerable<SelectListItem>)ViewBag.Events, "Select Event Category", new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-success" id="AddCategory">Add</button>
+                                        <button class="btn btn-success" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "EventList", null, new { @class = "linker" })
+</div>
+<script type="text/javascript">
+    CKEDITOR.replace('cke');
+</script>

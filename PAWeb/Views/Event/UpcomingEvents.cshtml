@@ -1,0 +1,79 @@
+﻿
+
+@using PADomain
+@model PAWeb.EventViewModel
+@{
+    ViewBag.Title = "All Events";
+
+}
+<!-- ##### Breadcrumb Area Start ##### -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Events</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcrumb Area End ##### -->
+<!-- ##### Events Area Start ##### -->
+<div class="events-area section-padding-100">
+    <div class="container">
+        <div class="row">
+
+
+
+            @foreach (var item in Model.Events.OrderBy(item => item.EventDate))
+            {
+               
+                <div class="col-12">
+                    <!-- Single Upcoming Events Area -->
+                    <div class="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                        <!-- Thumbnail -->
+                        <div class="upcoming-events-thumbnail">
+                            <img src="@Url.Content("~/Content/Images/")@item.EventImageThumbnailUrl" alt="" />
+                        </div>
+                        <!-- Content -->
+                        <div class="upcoming-events-content d-flex flex-wrap align-items-center">
+                            <div class="events-text">
+                                <h4>@item.EventName</h4>
+                                <div class="events-meta">
+                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>  @item.EventDate.ToString("MMMM dd, yyyy")</a>
+                                    <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> @item.EventDate.TimeOfDay</a>
+                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> @item.EventLocation</a>
+                                </div>
+                                <p>@Html.Raw(item.EventDescription)</p>
+                                <a href="@Url.Action("EventDetails", "Event", new { id = item.Id })">Read More <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                            <div class="find-out-more-btn">
+                                <a href="@Url.Action("EventDetails", "Event", new { id = item.Id })" class="btn crose-btn btn-2">Find Out More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+            <div class="col-12">
+                <div class="pagination-area mt-70">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

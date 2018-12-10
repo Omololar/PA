@@ -1,0 +1,177 @@
+﻿@model PAWeb.MembersViewModel
+@{
+    ViewBag.Title = "AddDept";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Member</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Member</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+
+                <div class="card">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Member</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                @using (Html.BeginForm("EditMember", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        @Html.HiddenFor(model => model.Id)
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                            </div>
+                                            @Html.LabelFor(model => model.OtherName, htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.OtherName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.OtherName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Profession, htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Profession, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Profession, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-6" })
+                                            <div class="col-md-10">
+                                                <input type="text" name="DateOfBirth" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />
+                                                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.SpouseName, htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.WeddingAnniversary, htmlAttributes: new { @class = "control-label col-md-6" })
+                                            <div class="col-md-10">
+                                                <input type="text" name="WeddingAnniversary" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />
+                                                @Html.ValidationMessageFor(model => model.WeddingAnniversary, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.MemberImageUrl, htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <div class="col-md-10">
+                                                <input type="file" name="MemeberImageThumbnailUrl" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" required />
+
+                                            </div>
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <img src="@Url.Content("~/Content/Images/")@Model.MemberImageUrl" width="150" height="150" class="img-upload" alt="Upload your Image" />
+
+                                            </div>
+
+                                        </div>
+
+
+                                        @*<div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="radio" value="Male" name="gender" checked> Male<br />
+                            <input type="radio" value="Female" name="gender"> Female<br />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Married, htmlAttributes: new { @class = "control-label col-md-8" })
+
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="radio" value="Yes" name="Married"> Yes<br />
+                            <input type="radio" value="No" name="Married"> No<br />
+                            @Html.ValidationMessageFor(model => model.Married, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Save" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "DepartmentList", null, new { @class = "linker" })
+</div>
+<script type="text/javascript">
+    CKEDITOR.replace('cke');
+</script>

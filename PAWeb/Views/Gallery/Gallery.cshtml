@@ -1,0 +1,29 @@
+﻿@using PADomain
+
+
+@model PAWeb.HomeViewModel
+
+@{
+    ViewBag.Title = "Media";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="gallery-area d-flex flex-wrap">
+   
+
+
+    @foreach (var ev in Model.Pictures.OrderBy(i => i.EventDate))
+    {
+        
+            <!-- Single Gallery Area -->
+            <div class="single-gallery-area">
+                <a href="@Url.Content("~/Content/Images/")@ev.PictureThumbnailUrl" class="gallery-img" title="@ev.Name">
+                    <img src="@Url.Content("~/Content/Images/")@ev.PictureThumbnailUrl" alt="" />
+                </a>
+            </div>
+       
+    }
+
+
+
+</div>

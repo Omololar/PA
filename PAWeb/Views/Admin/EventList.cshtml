@@ -1,0 +1,100 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PAWeb.EventListViewModel
+@{
+    ViewBag.Title = "EventList";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var c = ViewBag.Page ?? 1;
+    var j = c - 1;
+    var p = ViewBag.PageSize ?? Model.Events.Count();
+    var m = j * p;
+    var sn = m + 1;
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Event </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Event List </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <!-- /.card -->
+                <div class="card">
+
+                    <div class="card-body">
+                        <table id="DeptTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="remove">
+                                    <th>S/N</th>
+                                    <th style="width:20%">Name</th>
+                                    <th style="width:20%">Event Theme</th>
+                                    <th style="width:20%">Event Category</th>                                 
+                                    <th style="width:10%"></th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var events in Model.Events)
+                                {
+                                    <tr>
+                                        <td>@sn</td>
+                                        <td>
+                                            <img src="@Url.Content("~/Content/Images/")@events.EventImageThumbnailUrl" class="img-thumbnail-small img-circle" style="width:65px; height:65px;" alt="Products/@events.EventName" />
+                                        </td>
+                                        <td>@events.EventName</td>
+                                        <td>@events.EventTheme</td>
+                                        @*<td>@events.EventDescription</td>*@
+                                       
+
+                                        <td><a href="/Admin/EditEvent/@events.Id" class="linker">Edit</a></td>
+                                        <td>
+                                            @using (Html.BeginForm("DeleteEvent", "Admin"))
+                                            {
+                                                @Html.Hidden("Id", events.Id)
+                                                <input type="submit" class="btn btn-danger btn-xs Delete" value="Delete" />
+                                            }
+
+                                        </td>
+                                    </tr>
+
+
+                                    sn++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div id="contentPager">
+                            @Html.PagedListPager(Model.Events, page => Url.Action("EventList", new { page }), new PagedListRenderOptions { LiElementClasses = new List<string> { "pagerli" }, DisplayPageCountAndCurrentLocation = true, DisplayItemSliceAndTotal = true })
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+

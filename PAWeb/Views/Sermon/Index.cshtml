@@ -1,0 +1,133 @@
+﻿@using PADomain
+
+
+@model PAWeb.SermonViewModel
+@{
+    ViewBag.Title = "Sermons";
+
+}
+
+<!-- ##### Breadcrumb Area Start ##### -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i>Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Sermons</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sermons-content-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Sermons.OrderBy(s => s.SermonDate.Month))
+            {
+                if (item.SermonDate.Month == DateTime.Now.Month)
+                {
+                    <div class="col-md-12">
+                        <div class="sermons-content-thumbnail" >
+                                        </div>
+                       
+                        <div class="sermons-text text-center">
+                            <h2>@item.Title</h2>
+                            <div class="sermons-meta-data d-flex flex-wrap justify-content-center">
+                                <p><i class="fa fa-user" aria-hidden="true"></i> Sermon From: <span> @item.PreacherName</span></p>
+                                <p><i class="fa fa-tag" aria-hidden="true"></i> Category: <span>@item.SermonCategory.SermonName</span></p>
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> @item.SermonDate.ToString("MMMM dd, yyyy") </p>
+                            </div>
+
+                            <p>@item.ShortDescription</p>
+                            <div class="read-more-share d-flex flex-wrap justify-content-between">
+                                <div >
+                                    @*<video width="320" controls>                                   
+                                       <source src="@Url.Content("~/Content/Media/")@item.SermonvideoThumbnail" type="video/mp4" />
+                                      
+                                    </video>*@
+                                </div>
+                                <div class="read-more-btn">
+                                    <a href="@Url.Action("SermonDetails","Sermon", new { id = item.Id } )">Read More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </div>
+                             
+                                <div class="share">
+                                    <span>Share:</span>
+                                    <a href="https://www.facebook.com/rccgpraiseajah"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="http://twitter.com/rccgpraiseajah"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="https://www.instagram.com/rccgpraiseajah"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    break;
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+<section class="latest-sermons-area">
+    <div class="container">
+        <div class="row">
+          
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>Popular Sermons</h2>
+                    <p>Loaded with fast-paced worship, activities, and video teachings to address real issues that students face each day</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Single Latest Sermons -->
+            @foreach (var item in Model.Sermons.OrderBy(s => s.SermonDate))
+            {
+                if (item.SermonDate <= DateTime.Now)
+                {
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="single-latest-sermons mb-100">
+                            @* <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center"  style="background-image: url(@Url.Content("~/Content/images/")@item.ImageThumbnailUrl); ">
+            *@<div >
+                <img src="@Url.Content("~/Content/images/")@item.ImageThumbnailUrl" alt="preacher :@item.PreacherName" />
+
+            <!-- Date -->
+            <div class="sermons-date">
+                <h6>@item.SermonDate.ToString("MMMM dd, yyyy") </h6>
+            </div>
+             </div>
+        @*</div>*@
+
+
+                            <div class="sermons-content">
+                                <div class="sermons-cata">
+                                    <a href="@Url.Action("PrintPdf","Sermon", new { id = @item.Id })" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+
+                                </div>
+                                <h4>
+                                    <a href="@Url.Action("SermonDetails","Sermon", new { id = item.Id } )">  @item.Title </a>
+
+                                </h4>
+                                <div class="sermons-meta-data">
+                                    <p><i class="fa fa-user" aria-hidden="true"></i> Sermon From: <span>@item.PreacherName</span></p>
+                                    <p><i class="fa fa-tag" aria-hidden="true"></i> Category: <span>@item.SermonCategory.SermonName</span></p>
+                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> @item.SermonDate.ToString("MMMM dd, yyyy")</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+
+        </div>
+    </div>
+</section>
+

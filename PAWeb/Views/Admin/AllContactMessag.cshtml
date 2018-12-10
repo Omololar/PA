@@ -1,0 +1,101 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model PAWeb.ContactListModel
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewBag.Title = "Index";
+    var c = ViewBag.Page ?? 1;
+    var j = c - 1;
+    var p = ViewBag.PageSize ?? Model.Contacts.Count();
+    var m = j * p;
+    var sn = m + 1;
+
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Worker</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Worker</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <!-- /.card -->
+                <div class="card">
+                    <div class="card-body">
+                        <table id="DeptTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="remove">
+                                    <th>S/N</th>
+                                    <th style="width:20%">Full Name</th>
+                                    <th style="width:20%">Phone Number</th>
+                                    <th style="width:20%">Subject</th>
+                                    <th style="width:10%">Sender Email</th>
+                                    <th style="width:20%">Message</th>
+                                    <th style="width:10%"></th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var msg in Model.Contacts)
+                                {
+
+                                <tr>
+                                    <td>@sn</td>
+                                    <td>@msg.FullName  </td>
+                                    <td>@msg.PhoneNumber</td>
+                                    <td style="width: 200px;">@msg.Subject</td>
+                                    <td style="width: 200px;"> <a href="mailto:@msg.FromEmail?subject=@msg.Subject">@msg.FromEmail</a></td>
+                                    @*<a href="mailto:info@example.com?subject=subject&cc=cc@example.com">@msg.FromEmail</a>*@                     
+                                    <td>@msg.Body</td>
+                                    <td style="width: 200px;"> <a href="mailto:@msg.FromEmail?subject=@msg.Subject">Reply Mail</a></td>
+
+                                   
+                                    <td>
+                                        @using (Html.BeginForm("DeleteMail", "Admin"))
+                                        {
+                                            @Html.Hidden("Id", msg.Id)
+
+                                            <input type="submit" class="btn btn-danger btn-xs " value="Delete" />
+                                        }
+
+                                    </td>
+                                </tr>
+                                    sn++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div id="contentPager">
+                            @Html.PagedListPager(Model.Contacts, page => Url.Action("WorkerList", new { page }), new PagedListRenderOptions { LiElementClasses = new List<string> { "pagerli" }, DisplayPageCountAndCurrentLocation = true, DisplayItemSliceAndTotal = true })
+                        </div>
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>

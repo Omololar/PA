@@ -1,0 +1,52 @@
+﻿@model PAWeb.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/AccountLayout.cshtml";
+}
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('../../Content/Login/images/login.jpg');">
+        <div class="wrap-login100 p-t-30 p-b-50">
+            <span class="login100-form-title p-b-41">
+                Register
+            </span>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "registerForm", @class = "login--form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="wrap-input100 validate-input" data-validate="Enter username">
+                    <input class="input100" type="text" name="UserName" placeholder="User name/Email">
+                    <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" type="password" name="Password" placeholder="Password">
+                    <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" type="password" name="ConfirmPassword" placeholder="Confirm Password">
+                    <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                </div>
+
+                <label class="login--form__input-area checkbox-label">
+                    <input type="checkbox" />
+                    <span class="checkgraph fa fa-check"></span>
+                    Remember me?
+                </label>
+                <div class="container-login100-form-btn m-t-32">
+                    <button class="login100-form-btn">
+                        Register
+                    </button>
+                </div>
+
+            }
+            <footer class="login--footer text-center">
+                <p class="login--footer__text">Already have an account? <strong>@Html.ActionLink("log in here", "Login")</strong></p>
+            </footer>
+        </div>
+    </div>
+</div>
+
+

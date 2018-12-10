@@ -1,0 +1,580 @@
+﻿@using PADomain
+
+
+@model PAWeb.HomeViewModel
+
+@{
+    ViewBag.Title = "Home";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<section class="hero-area hero-post-slides owl-carousel">
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/rccggood.png);">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides-content">
+                        <h2 data-animation="fadeInUp" data-delay="100ms">Welcome To RCCG</h2>
+                        <p data-animation="fadeInUp" data-delay="300ms">Praise Assembly</p>
+                        <a href="@Url.Action("Contact", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Worship With Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Announcement-->
+    @foreach (var item in Model.News.OrderBy(item => item.DueDate))
+    {
+        if (item.DueDate.Month >= DateTime.Now.Month)
+        {
+            <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~/Content/images/")@item.PictureThumbnailUrl);">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">Announcement</h2>
+                                <h3 data-animation="fadeInUp" data-delay="100ms">@item.Name</h3>
+                                <p data-animation="fadeInUp" data-delay="300ms">@Html.Raw(item.Description)</p>
+                                <a href="@Url.Action("Contact", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">God Bless you</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <!--Church Programmes-->
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/16.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides-content">
+                        <h2 data-animation="fadeInUp" data-delay="100ms">Sunday Worship</h2>
+                        <p data-animation="fadeInUp" data-delay="300ms">8a.m - 11:15p.m</p>
+                        <a href="@Url.Action("About", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Worship With Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Special programme-->
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/15.jpg);">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides-content">
+                        <h2 data-animation="fadeInUp" data-delay="100ms">Tuesday- Digging Deep</h2>
+                        <p data-animation="fadeInUp" data-delay="300ms">6:30p.m - 8p.m</p>
+                        <a href="@Url.Action("Contact", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Be Part</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/Vigil.jpg);">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides-content">
+                        <h2 data-animation="fadeInUp" data-delay="100ms">Thursday- Faith Clinic</h2>
+                        <p data-animation="fadeInUp" data-delay="300ms">6:30p.m - 8p.m</p>
+                        <a href="@Url.Action("Contact", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Don't Miss It</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/Vigil.jpg);">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides-content">
+                        <h2 data-animation="fadeInUp" data-delay="100ms">Special Deliverance Programme</h2>
+                        <p data-animation="fadeInUp" data-delay="300ms">Tagged: Except you bless me! </p>
+                        <a href="@Url.Action("Contact", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Tuesday 10a.m - 12noon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Special programme-->
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/2.jpg);">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides-content">
+                        <h2 data-animation="fadeInUp" data-delay="100ms">Holy Communion</h2>
+                        <p data-animation="fadeInUp" data-delay="300ms">First Sunday Monthly 5-7p.m</p>
+                        <a href="@Url.Action("Contact", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Be Part</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/Vigil.jpg);">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides-content">
+                        <h2 data-animation="fadeInUp" data-delay="100ms">Zonal Vigil</h2>
+                        <p data-animation="fadeInUp" data-delay="300ms">Last Friday every quarter (March, June & September)</p>
+                        <a href="@Url.Action("Contact", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Don't Miss It</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/concert.jpeg);">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides-content">
+                        <h2 data-animation="fadeInUp" data-delay="100ms">Moment of Praise</h2>
+                        <p data-animation="fadeInUp" data-delay="300ms">First Sunday Quarterly.</p>
+                        <a href="@Url.Action("About", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">4p.m -7p.m</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/birthday.jpeg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @foreach (var item in Model.Members.OrderBy(item => item.DateOfBirth))
+                    {
+
+                        if (item.DateOfBirth.Month == DateTime.Now.Month)
+                        {
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">Happy Birthday to all our @item.DateOfBirth.ToString("MMMM") Celebrants </h2>
+                              
+                                <p data-animation="fadeInUp" data-delay="100ms"><strong style="color:skyblue">@item.MemberName :  <span> @item.DateOfBirth.ToString("MMMM, dd")</span></strong></p>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+   
+     <!--Wedding-->
+    @foreach (var wed in Model.Members.OrderBy(i => i.WeddingAnniversary))
+    {
+        if (wed.WeddingAnniversary.Month == DateTime.Now.Month)
+        {
+
+            <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/wedding2.jpeg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <p data-animation="fadeInUp" data-delay="100ms">Happy Wedding Anniversary <strong style="background-color:palevioletred"> @wed.MemberName and @wed.SpouseName</strong></p>
+                                <p data-animation="fadeInUp" data-delay="300ms">@wed.WeddingAnniversary.ToString("MMMM")</p>
+                                <p data-animation="fadeInUp" data-delay="500ms">Praise Assembly Felicitate with you</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @foreach (var wed in Model.Workers.OrderBy(i => i.MarriageAnniversary))
+    {
+        if (wed.MarriageAnniversary.Month == DateTime.Now.Month)
+        {
+
+            <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/wedding2.jpeg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <p data-animation="fadeInUp" data-delay="100ms">Happy Wedding Anniversary <strong style="background-color:palevioletred"> @wed.WorkerName and @wed.SpouseName</strong></p>
+                                <p data-animation="fadeInUp" data-delay="300ms">@wed.MarriageAnniversary.ToString("MMMM")</p>
+                                <p data-animation="fadeInUp" data-delay="500ms">Praise Assembly Felicitate with you</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <!--Service Picture-->
+    @foreach (var ev in Model.Pictures.OrderBy(i => i.EventDate))
+    {
+        if (ev.EventDate.Month >= DateTime.Now.Month)
+        {
+
+            <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~/Content/images/")@ev.PictureThumbnailUrl);">
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">@ev.Name</h2>
+                                <p data-animation="fadeInUp" data-delay="300ms">RCCG Praise Assembly Christian Social Responsibility@*@Html.Raw(ev.PictureDescription)*@</p>
+                                <a href="@Url.Action("Contact", "Home")" class="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Join Us today</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+
+
+</section>
+
+<section class="about-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>Welcome To Church</h2>
+                    <p>A church isn't a building—it's the people. We meet regularly to share and display love as one body.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row about-content justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="about-us-content mb-100">
+                    <img src="~/Content/img/rccggood.png" alt="">
+                    <div class="about-text justify-content-center">
+                        <h4>Our Mission and Vision</h4>
+                        <p>The mission statement of the Redeemed Christian Church of God is</p>
+                     
+                            <ol >
+                                <li>1. To make heaven</li>
+                                <li>2.To take as many people with us</li>
+                                <li>3.To have a member of RCCG in every family of all nations</li>
+                                <li>4. To accomplish No. 1 above, holiness will be our lifestyle </li>
+                                <li>
+                                    5.To accomplish No. 2 and 3 above, we will plant churches
+                                    within five minutes walking distance in every city and town of developing countries
+                                </li>
+                                <li>6. We will pursue these objectives until every nation in the world is reached for the Lord Jesus Christ</li>
+                            </ol>                                                                 
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="about-us-content mb-100">
+                    <img src="~/Content/img/bg-img/pastor.jpg" alt="">
+                    <div class="about-text">
+                        <h4>Our History</h4>
+                        <p>
+                            Jesus Christ told us, his disciples, to make disciples of all nations. In line with our ultimate goal to make heaven and to take as many people with us as is possible,
+                            the most important values of this church is our mission to the world. It begins in our own community, and spreads overseas to every nation. Church members are involved
+                            in a variety of ministries from things as simple as cleaning the church environment, to taking a class in Sunday school.
+                            
+                        </p>
+                                   </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                @foreach (var item in Model.Sermons.OrderByDescending(s => s.SermonDate))
+                {
+                    if (item.SermonDate <= DateTime.Now && item.SermonCategory.Id == 1)
+                    {
+                        <div class="about-us-content mb-100">
+                            <img src="@Url.Content("~/Content/Images/")@item.ImageThumbnailUrl" alt="@item.PreacherName" />
+
+                            <div class="about-text">
+                                <h4>G.O Message</h4>
+                                <p>@item.ShortDescription</p>
+                                <a href="@Url.Action("SermonDetails","Sermon", new { id = item.Id } )">Read More <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                        break;
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="call-to-action-area section-padding-100 bg-img bg-overlay" style="background-image: url(../../Content/img/bg-img/6.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="call-to-action-content text-center">
+                    <h6>A Place For You</h6>
+                    <h2>Find a place to connect and grow through a small group, class, or regular gathering.</h2>
+                    <a href="@Url.Action("DepartmentCorner","Department")" class="btn crose-btn btn-2">Be A Worker</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="latest-sermons-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>Latest Sermons</h2>
+                    <p>Loaded with fast-paced worship, activities, and teachings to address real issues that humans face each day</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            @foreach (var item in Model.Sermons.OrderByDescending(s => s.SermonDate).Take(3))
+            {
+                if (item.SermonDate <= DateTime.Now)
+                {
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-latest-sermons mb-100">
+                            <div class="sermons-thumbnail">
+                                @*<img src="~/Content/img/bg-img/7.jpg" alt="">*@
+                                <img src="@Url.Content("~/Content/Images/")@item.ImageThumbnailUrl" alt="@item.PreacherName" />
+                            </div>
+
+
+                            <div class="sermons-date">
+                                <h6><span>@item.SermonDate.ToString("MMMM dd, yyyy")</span></h6>
+                            </div>
+                            <div class="sermons-content">
+
+                                <h4>@item.Title</h4>
+                                <div class="sermons-meta-data">
+                                    <p><i class="fa fa-user" aria-hidden="true"></i> Sermon From: <span>@item.PreacherName</span></p>
+                                    <p><i class="fa fa-tag" aria-hidden="true"></i> Categories: <span>@item.SermonCategory.SermonName</span></p>
+                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> @item.SermonDate.ToString("MMMM dd, yyyy")</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+</section>
+@foreach (var item in Model.Events.OrderBy(item => item.EventDate))
+{
+    if (item.EventDate >= DateTime.Now)
+    {
+    <section class="call-to-action-area section-padding-100 bg-img bg-overlay" style="background-image: url(@Url.Content("~/Content/images/")@item.EventImageThumbnailUrl);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-left white">
+                        <h2>Upcoming Event: <span> @item.EventName</span></h2>
+
+                        <div id="datecounter" class="btn crose-btn btn-2" data-date="@item.EventDate">
+                            <div class="timer-col ">
+                                <span id="days"></span> <span class="timer-type">Day(s)</span>
+                                <span id="hours"></span> <span class="timer-type">Hours</span>
+                                <span id="minutes"></span> <span class="timer-type">Minutes</span>
+                                <span id="seconds"></span> <span class="timer-type">Seconds</span>
+                            </div>
+                        </div>
+                  
+                        <h2>@item.EventDate.ToString("MMM dd,yyyy") <br/> @@ @item.EventLocation</h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        break;
+    }
+
+}
+
+<section class="upcoming-events-area section-padding-0-100">
+
+    <div class="upcoming-events-heading bg-img bg-overlay bg-fixed" style="background-image: url(../../Content/img/bg-img/1.jpg);">
+        <div class="container">
+            <div class="row">
+                <!-- Section Heading -->
+                <div class="col-12">
+                    <div class="section-heading text-left white">
+                        <h2>Events</h2>
+                        <p>Be sure to visit our Programme page regularly </p>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="upcoming-events-slides-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="upcoming-slides owl-carousel">
+
+                        <div class="single-slide">
+                            <h2>National Programme</h2>
+
+                            @foreach (var eve in Model.Events.OrderBy(i => i.EventDate))
+                            {
+                                if (/*eve.EventDate >= DateTime.Now &&*/ eve.Eventtype.Id == 1)
+                                {
+
+                                    <div class="single-upcoming-events-area d-flex flex-wrap align-items-center">
+
+                                        <div class="upcoming-events-thumbnail">
+
+                                            <img src="@Url.Content("~/Content/Images/")@eve.EventImageThumbnailUrl" alt="" />
+                                        </div>
+
+                                        <div class="upcoming-events-content d-flex flex-wrap align-items-center">
+                                            <div class="events-text">
+                                                <h4>@eve.EventTheme</h4>
+                                                <h4>@eve.Eventtype.Name</h4>
+                                                <div class="events-meta">
+                                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @eve.EventDate.ToString("MMMM dd, yyyy")</a>
+                                                    <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> @eve.EventDate.TimeOfDay</a>
+                                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>@eve.EventLocation</a>
+                                                </div>
+                                                <p>@Html.Raw(eve.EventDescription)</p>
+                                                <a href="@Url.Action("EventDetails", "Event", new { id = eve.Id })">Read More <i class="fa fa-angle-double-right"></i></a>
+                                            </div>
+                                            <div class="find-out-more-btn">
+                                                <a href="@Url.Action("UpcomingEvents", "Event")" class="btn crose-btn btn-2">Find Out More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+                        </div>
+                        <div class="single-slide">
+                            <h2>Praise Assembly Programme</h2>
+                            @foreach (var ev in Model.Events.OrderBy(i => i.EventDate))
+                            {
+                                if (ev.Eventtype.Id == 3)
+                                {
+
+
+                                    <div class="single-upcoming-events-area d-flex flex-wrap align-items-center">
+
+                                        <div class="upcoming-events-thumbnail">
+                                            <img src="@Url.Content("~/Content/Images/")@ev.EventImageThumbnailUrl" alt="" />
+
+                                        </div>
+
+                                        <div class="upcoming-events-content d-flex flex-wrap align-items-center">
+                                            <div class="events-text">
+                                                <h4>@ev.EventTheme</h4>
+                                                <h4>@ev.Eventtype.Name</h4>
+                                                <div class="events-meta">
+                                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @ev.EventDate.ToString("MMMM dd, yyyy")</a>
+                                                    <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> @ev.EventDate.TimeOfDay</a>
+                                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>@ev.EventLocation</a>
+                                                </div>
+                                                <p>@Html.Raw(ev.EventDescription)</p>
+                                                <a href="@Url.Action("EventDetails", "Event", new { id = ev.Id })">Read More <i class="fa fa-angle-double-right"></i></a>
+                                            </div>
+                                            <div class="find-out-more-btn">
+                                                <a href="@Url.Action("UpcomingEvents", "Event")" class="btn crose-btn btn-2">Find Out More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="single-slide">
+                            <h2>Other Programme</h2>
+                            @foreach (var ev in Model.Events.OrderBy(i => i.EventDate))
+                            {
+                                if (ev.Eventtype.Id == 2)
+                                {
+
+
+                                    <div class="single-upcoming-events-area d-flex flex-wrap align-items-center">
+
+                                        <div class="upcoming-events-thumbnail">
+                                            <img src="@Url.Content("~/Content/Images/")@ev.EventImageThumbnailUrl" alt="" />
+
+                                        </div>
+
+                                        <div class="upcoming-events-content d-flex flex-wrap align-items-center">
+                                            <div class="events-text">
+                                                <h4>@ev.EventTheme</h4>
+                                                <div class="events-meta">
+                                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @ev.EventDate.ToString("MMMM dd, yyyy")</a>
+                                                    <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> @ev.EventDate.TimeOfDay</a>
+                                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>@ev.EventLocation</a>
+                                                </div>
+                                                <p>@Html.Raw(ev.EventDescription)</p>
+                                                <a href="@Url.Action("EventDetails", "Event", new { id = ev.Id })">Read More <i class="fa fa-angle-double-right"></i></a>
+                                            </div>
+                                            <div class="find-out-more-btn">
+                                                <a href="@Url.Action("UpcomingEvents", "Event")" class="btn crose-btn btn-2">Find Out More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="gallery-area d-flex flex-wrap">
+
+  
+    @foreach (var ev in Model.Pictures.OrderBy(i => i.EventDate).Take(10))
+    {
+        if (ev.EventDate <= DateTime.Now)
+        {
+
+            <div class="single-gallery-area">
+                <a href="@Url.Content("~/Content/Images/")@ev.PictureThumbnailUrl" class="gallery-img" title="@ev.Name">
+                    <img src="@Url.Content("~/Content/Images/")@ev.PictureThumbnailUrl" alt="" />
+                </a>
+
+            </div>
+        }
+    }
+
+
+
+</div>
+
+

@@ -1,0 +1,397 @@
+﻿@model PAWeb.WorkersViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Praise Assembly</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/plugins/datatables/dataTables.bootstrap4.css">
+    <link href="~/Content/dist/css/adminlte.css" rel="stylesheet" />
+    <link rel="icon" href="~/Content/img/rccggood.png">
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/ckeditor")
+
+</head>
+<body class="hold-transition sidebar-mini">
+
+
+    <div class="wrapper">
+      <div class="content-wrapper">
+      
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">                     
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Join Departments</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- /.card -->
+
+                        <div class="card">
+                            <div class="modal-dialog">
+                                <div class="modal-content">                                    
+                                    <div class="modal-body">
+
+                                        @using (Html.BeginForm("JoinWorker", "Worker", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            @Html.HiddenFor(model => model.Id)
+                                            <div class="row">
+                                                <div class="col-10 col-lg-4">
+                                                    <div class="form-group">                                                 
+                                                        <input type="text" class="form-control" name="FirstName" placeholder="Surname*" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-10 col-lg-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="LastName" placeholder="First Name*" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-10 col-lg-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="OtherName" placeholder="Other Name*" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-10 col-lg-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="Address" placeholder="House Address*" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-10 col-lg-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="PhoneNumber" placeholder="Phone Number*" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-10 col-lg-4">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" name="email" placeholder="E-mail*" />
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Date Of Birth:</label>
+                                                        <input type="date" name="BirthDate" Value="mm/dd/yyyy" />
+                                                    </div>
+                                                </div>
+                                         
+                                         
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Profession*:</label>
+                                                        <input type="text" name="Profession" class="form-control" placeholder="Job Name" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-8 col-lg-4">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Are you Married?*:</label>
+                                                            <label for="contact-name">
+                                                                Yes
+                                                                <input type="radio" name="IsMarried" Value="Yes" />
+
+                                                            </label>
+                                                            <label for="contact-name">
+                                                                No
+                                                                <input type="radio" name="IsMarried" Value="No" />
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Spouse Name:</label>
+                                                        <input type="text" class="form-control" name="SpouseName" placeholder="Spouse Name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Children:</label>
+                                                        <input type="text" class="form-control" name="NumberOfChildren" placeholder="How many children" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Wedding Anniversary:</label>
+                                                        <input type="date" name="MarriageAnniversary" class="form-dateInput" Value="mm/dd/yyyy" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Are you Born Again*:</label>
+                                                            <label for="contact-name">
+                                                                Yes
+                                                                <input type="radio" name="BornAgain" Value="Yes" />
+
+                                                            </label>
+                                                            <label for="contact-name">
+                                                                No
+                                                                <input type="radio" name="BornAgain" Value="No" />
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Year*:</label>
+                                                        <input type="date" name="YearBornAgain" class="form-dateInput" Value="mm/dd/yyyy" />
+
+                                                        @*<input type="text" name="YearBornAgain" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />*@
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Have you done water baptism by immersion?*:</label>
+                                                            <label for="contact-name">
+                                                                Yes
+                                                                <input type="radio" name="WaterBaptism" Value="Yes" />
+
+                                                            </label>
+                                                            <label for="contact-name">
+                                                                No
+                                                                <input type="radio" name="WaterBaptism" Value="No" />
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Baptism Date*:</label>
+                                                        <input type="date" name="BaptismDate" class="form-dateInput" Value="mm/dd/yyyy" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Where were you baptised?*:</label>
+                                                        <input type="text" name="ChurchBaptised" class="form-control" placeholder="Church Name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Have you been baptised in the Holy Ghost?*:</label>
+                                                            <label for="contact-name">
+                                                                Yes
+                                                                <input type="radio" name="HolyGhostBaptism" Value="Yes" />
+
+                                                            </label>
+                                                            <label for="contact-name">
+                                                                No
+                                                                <input type="radio" name="HolyGhostBaptism" Value="No" />
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Date Joined Redeem:</label>
+                                                        <input type="date" name="JoinDate" class="form-dateInput" Value="mm/dd/yyyy" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Select a department*:</label>
+                                                        @Html.DropDownListFor(model => model.DepartmentName, (IEnumerable<SelectListItem>)ViewBag.Department, "Select a department", new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Any Exerience in the department before*:</label>
+                                                            <label for="contact-name">
+                                                                Yes
+                                                                <input type="radio" name="IsExperienced" Value="Yes" />
+
+                                                            </label>
+                                                            <label for="contact-name">
+                                                                No
+                                                                <input type="radio" name="IsExperienced" Value="No" />
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Experience  :</label>
+                                                        <textarea name="Experience" class="form-control" cols="30" rows="5" placeholder="Type Experience here if any"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Have you gone through School Of Mission?:</label>
+                                                            <label for="contact-name">
+                                                                Yes
+                                                                <input type="radio" name="SOM" Value="Yes" />
+
+                                                            </label>
+                                                            <label for="contact-name">
+                                                                No
+                                                                <input type="radio" name="SOM" Value="No" />
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Year:</label>
+                                                        <input type="date" name="SOMYear" class="form-dateInput" Value="mm/dd/yyyy" />
+
+                                                        @*<input type="text" name="JoinDate" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Have you gone through School Of Disciples?:</label>
+                                                            <label for="contact-name">
+                                                                Yes
+                                                                <input type="radio" name="SOD" Value="Yes" />
+
+                                                            </label>
+                                                            <label for="contact-name">
+                                                                No
+                                                                <input type="radio" name="SOD" Value="No" />
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Year:</label>
+                                                        <input type="date" name="SODYear" class="form-dateInput" Value="mm/dd/yyyy" />
+
+                                                        @*<input type="text" name="JoinDate" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-lg-8">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Have you gone through Believers Class?:</label>
+                                                            <label for="contact-name">
+                                                                Yes
+                                                                <input type="radio" name="BC" Value="Yes" />
+
+                                                            </label>
+                                                            <label for="contact-name">
+                                                                No
+                                                                <input type="radio" name="BC" Value="No" />
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Upload Picture*:</label>
+                                                        <input type="file" name="ImageFile" class="imgInp form-control" width="150" height="150" accept=".png,.jpg,.jpeg,.gif,.tif" required placeholder="Upload Picture" />
+                                                    </div>
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <img src="@Url.Content("~/Content/Images/")@Model.ImageUrl" width="150" height="150" class="img-upload" alt=" Image" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Upload File*:</label>
+                                                        <input type="file" name="FilethunmbnailUrl" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" width="150" height="150" placeholder="Upload Files" />
+                                                    </div>
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <img src="@Url.Content("~/Content/Images/")@Model.FileUrl" width="150" height="150" class="img-upload" alt="File" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" id="btn-submit" value="Submit" class="btn btn-primary" />
+
+                                            </div>
+                                         }
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+
+
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2018 <a href="#">Praise Assembly</a>.</strong>
+            All rights reserved.
+
+        </footer>
+
+    </div>
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/plugins/datatables/dataTables.bootstrap4.js"></script>
+
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <script src="~/Content/dist/js/demo.js"></script>
+
+</body>
+</html>

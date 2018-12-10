@@ -1,0 +1,171 @@
+﻿@using PagedList;
+@using PADomain
+@using PagedList.Mvc;
+@model PAWeb.DeptListViewModel
+@{
+
+    ViewBag.Title = "Departments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Join Department</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ministries-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center mx-auto">
+                    <img src="~/Content/img/bg-img/event.jpg" alt="">
+                    <h3>Ministries/Department</h3>
+                    <p>You can be part of the following ministries/departments by joining..</p>
+                </div>
+            </div>
+        </div>
+
+        
+
+            <div class="row justify-content-center">
+
+                @foreach (var item in Model.AllDepartment)
+                {
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="container">
+                            <div class="single-blog-post mb-100">
+                                <div class="team-thumb">
+                                    <img src="@Url.Content("~/Content/Images/")@item.ImageThumbnailUrl" alt="" />
+                                </div>
+                                <div class="post-content">
+                                    <a href="@Url.Action("JoinWorker","Worker", new { id = item.Id } )" class="post-title">
+                                        <h4>@item.Name</h4>
+                                    </a>
+                                    <div class="post-meta d-flex">
+                                        <a href="#"><i class="fa fa-user" aria-hidden="true"></i> @item.DepartmentLeaderName</a>
+                                        <a href="@Url.Action("JoinWorker","Worker", new { id = item.Id } )">Click to join</a>
+                                    </div>
+
+                                    <p class="post-excerpt">@Html.Raw(item.Description).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+</section>
+<hr />
+<div class="team-members-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+           
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>The Ministers</h2>
+                    <p>You can contact any of the following ministers for further information about Praise Assembly and request.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+          
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-team-members text-center mb-100">
+                    <div class="team-thumb">
+                        @*style="background-image: url(~/Content/img/bg-img/pastor.jpg);">*@
+                        <img src="~/Content/img/bg-img/pastor.jpg" alt="">
+
+                    </div>
+                    <h6>Pst.Tunde Oyediran</h6>
+                    <span>Zonal Pastor</span>
+                    <div class="pastor-meta d-flex align-items-center justify-content-between">
+                        <a href="@Url.Action("DepartmentCorner","Department")">Ministries</a>
+                        <a href="@Url.Action("Index","Sermon")">Sermons</a>
+                        <a href="@Url.Action("Contact","Home")">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+        
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-team-members text-center mb-100">
+                    <div class="team-thumb">
+
+                        <img src="~/Content/img/bg-img/mummyOyediran.jpg" alt="">
+
+                    </div>
+                    <h6>Mummy Oyediran</h6>
+                    <span>Zonal Mummy</span>
+                    <div class="pastor-meta d-flex align-items-center justify-content-between">
+                        <a href="@Url.Action("DepartmentCorner","Department")">Ministries</a>
+                        <a href="@Url.Action("Index","Sermon")">Sermons</a>
+                        <a href="@Url.Action("Contact","Home")">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+      
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-team-members text-center mb-100">
+                    <div class="team-thumb">
+
+                        <img src="~/Content/img/bg-img/PstDitsu.jpeg" alt="">
+
+                    </div>
+                    <h6>Pst.Ditsu</h6>
+                    <span>Pastor</span>
+                    <div class="pastor-meta d-flex align-items-center justify-content-between">
+                        <a href="@Url.Action("DepartmentCorner","Department")">Ministries</a>
+                        <a href="@Url.Action("Index","Sermon")">Sermons</a>
+                        <a href="@Url.Action("Contact","Home")">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+       
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-team-members text-center mb-100">
+                    <div class="team-thumb">
+
+                        <img src="~/Content/img/bg-img/BroFemi.jpg" alt="">
+
+                    </div>
+                    <h6>Bro Femi Olakunle</h6>
+                    <span>Minister</span>
+                    <div class="pastor-meta d-flex align-items-center justify-content-between">
+                        <a href="@Url.Action("DepartmentCorner","Department")">Ministries</a>
+                        <a href="@Url.Action("Index","Sermon")">Sermons</a>
+                        <a href="@Url.Action("Contact","Home")">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="faith-cta-area style-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cta-text d-flex justify-content-between align-items-center">
+                    <p>For Testimony, prayer request and other information <a href="@Url.Action("Contact","Home")">Click Here</a> </p>
+             
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

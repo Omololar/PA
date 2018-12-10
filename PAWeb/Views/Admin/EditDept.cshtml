@@ -1,0 +1,112 @@
+﻿@model PAWeb.DeptViewModel
+@{
+    ViewBag.Title = "AddDept";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Department</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Events</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+
+                <div class="card">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add New Department</h4>
+                            </div>
+                            <div class="modal-body">
+                                @using (Html.BeginForm("EditDept", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.Id)
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DeptName, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.DeptName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DeptName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DeptLeaderName, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.DeptLeaderName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DeptLeaderName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.TextAreaFor(model => model.Description, new { id = "cke", @class = "ckeditor" })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DeptLocation, htmlAttributes: new { @class = "control-label  col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.DeptLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DeptLocation, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            <input type="file" name="ImageFile" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" required />
+
+                                        </div>
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <img src="@Url.Content("~/Content/Images/")@Model.ImageUrl" width="150" height="150" class="img-upload" alt="Department Image" />
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-success" id="AddCategory">Add</button>
+                                        <button class="btn btn-success" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "DepartmentList", null, new { @class = "linker" })
+</div>
+<script type="text/javascript">
+    CKEDITOR.replace('cke');
+</script>

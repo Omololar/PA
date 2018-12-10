@@ -1,0 +1,71 @@
+﻿@model PADomain.Event
+@{
+    ViewBag.Title = "EventDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ##### Breadcrumb Area Start ##### -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Sermon")">Sermons</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Sermon Detail</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sermons-details-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-between">
+            <!-- Blog Posts Area -->
+            <div class="col-12 col-lg-8">
+                <div class="sermons-details-area">
+
+                    <!-- Sermons Details Area -->
+                    <div class="single-post-details-area">
+
+
+                        <div class="post-content">
+                            <h2 class="post-title mb-30">@Model.EventName</h2>
+                            <img src="@Url.Content("~/Content/Images/")@Model.EventImageUrl" />
+
+                            <!-- Catagory & Share -->
+                            <div class="catagory-share-meta d-flex flex-wrap justify-content-between align-items-center">
+                                @*<div class="sermons-cata">
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Video"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Audio"><i class="fa fa-headphones" aria-hidden="true"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Docs"><i class="fa fa-file" aria-hidden="true"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+                                </div>*@
+                                <!-- Share -->
+                                <div class="events-meta">
+                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>  @Model.EventDate.ToString("MMMM dd, yyyy")</a>
+                                    <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> @Model.EventDate.ToString("HH")</a>
+                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> @Model.EventLocation</a>
+                                </div>
+                            </div>
+                            <p>@Html.Raw(Model.EventDescription)</p>
+                            <blockquote>
+                                <div class="blockquote-text">
+                                    <h6>“@Html.Raw(Model.EventTheme)” </h6>
+                                    <h6>@Model.Eventtype.Name</h6>
+                                   
+                                </div>
+                            </blockquote>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+       
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+﻿
+@model PAWeb.SermonIndexViewModel
+@{
+    ViewBag.Title = "SermonDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<!-- ##### Breadcrumb Area Start ##### -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i>Home</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Sermon")">Sermons</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Sermon Detail</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sermons-details-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-between">
+
+            <div class="col-12 col-lg-8">
+                <div class="sermons-details-area">
+
+                    <!-- Sermons Details Area -->
+                    <div class="single-post-details-area">
+
+
+                        <div class="post-content">
+                            <h2 class="post-title mb-30">@Model.sermon.Title</h2>
+                            @*<img src="@Url.Content("~/Content/Images/")@Model.sermon.ImageThumbnailUrl" alt="sermons/@Model.sermon.PreacherName" />*@
+
+
+                            <div class="catagory-share-meta d-flex flex-wrap justify-content-between align-items-center">
+                                <div>
+                                    @*<video width="320" controls>
+                                        <source src="@Url.Content("~/Content/Media/")@Model.sermon.SermonvideoThumbnail" type="video/mp4" />
+
+                                    </video>*@
+                                </div>
+
+                                <div class="share">
+                                    @*<span>Share:</span>*@
+                                    <a href="@Url.Action("PrintPdf","Sermon", new { id = Model.sermon.Id })" data-toggle="tooltip" data-placement="top" title="Download Message"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+
+                                    <a href="https://www.facebook.com/rccgpraiseajah"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="http://twitter.com/rccgpraiseajah"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="https://www.instagram.com/rccgpraiseajah"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+
+                                </div>
+                            </div>
+                            <p>@Html.Raw(Model.sermon.LongDescription)</p>
+                            <blockquote>
+                                <div class="blockquote-text">
+                                    <h6>“@Html.Raw(Model.sermon.ShortDescription)” </h6>
+                                    <h6>- @Model.sermon.PreacherName</h6>
+                                </div>
+                            </blockquote>
+                            <div class="share" ng-controller="myController">
+                                <div>
+                                    {{technologies.likes}}
+                                    <a href="#"><i class="fa fa-hand-o-up" aria-hidden="true" value="Like" ng-click="incrementLikes(technologies)"></i>Like</a>
+
+                                </div>
+                                <div>
+                                    {{technologies.dislikes}}
+                                    <a href="#"> <i class="fa fa-hand-o-down" aria-hidden="true" value="Dislike" ng-click="incrementDislikes(technologies)"></i>Dislike</a>
+
+                                </div>
+
+                               
+
+                               
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- ##### Sermons Area End ##### -->

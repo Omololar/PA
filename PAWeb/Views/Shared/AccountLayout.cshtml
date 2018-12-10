@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Praise Assembly Ajah</title>
+    <link rel="icon" href="~/Content/img/rccggood.png">
+    <link href="~/Content/Login/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Content/Login/css/main.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="container body-content">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+
+
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - PraiseAssembly</p>
+        </footer>
+    </div>
+    <script src="~/Content/Login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/Login/vendor/animsition/js/animsition.min.js"></script>
+    <script src="~/Content/Login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/Login/js/main.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("script2", required: false)
+</body>
+</html>

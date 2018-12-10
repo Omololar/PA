@@ -1,0 +1,139 @@
+﻿@using PADomain
+@model PAWeb.NewsViewModel
+
+@{
+    ViewBag.Title = "AddPicture";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">News</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+
+                <div class="card">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Announcement</h4>
+                            </div>
+                            <div class="modal-body">
+                                @using (Html.BeginForm("EditNews", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.Id)
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-8" })
+                                        <div class="col-md-10">
+                                            @Html.TextAreaFor(model => model.Description, new { id = "cke", @class = "ckeditor" })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Venue, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Venue, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Venue, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.PictureUrl, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            <input type="file" name="PictureThumbnailUrl" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" required />
+                                        </div>
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <img src="@Url.Content("~/Content/Images/")@Model.PictureUrl" width="150" height="150" class="img-upload" alt="Image" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            <input type="text" name="Date" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />
+                                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button class="btn btn-success" id="AddCategory">Add</button>
+                                        <button class="btn btn-success" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+<<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@Scripts.Render("~/bundles/jquery")
+
+@Scripts.Render("~/bundles/site")
+<script type="text/javascript">
+    CKEDITOR.replace('cke');
+</script>
+
+
+@if (Model.Done)
+{
+    <script>
+        navigate("/Admin/GalleryList");
+
+        function navigate(href) {
+
+
+            $.ajax({
+                url: href,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#renderbody').html(result);
+                }
+            });
+
+        }
+    </script>
+}

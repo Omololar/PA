@@ -1,0 +1,366 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Praise Assembly</title>
+
+    <link href="~/Content/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/plugins/datatables/dataTables.bootstrap4.css">
+    <link href="~/Content/dist/css/adminlte.css" rel="stylesheet" />
+    <link rel="icon" href="~/Content/img/rccggood.png">
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/ckeditor")
+
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+    </div>
+
+    <div class="wrapper">
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+               
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                        </li>
+                        <li class="nav-item d-none d-sm-inline-block">
+                            <a href="@Url.Action("Index","Home")" class="nav-link">Home</a>
+                        </li>
+
+                    </ul>
+                
+                </nav>
+            </div>
+            <div class="col-sm-6">
+                <div class="float-sm-right">
+                    <a class="btn btn-default col-sm-push" href="@Url.Action("Logout","Account")">Log Out</a>
+                </div>
+            </div>
+          
+        </div>
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+          
+            <a href="Index" class="brand-link">
+                <img src="~/Content/img/rccggood.png" alt="Praise Assembly" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light"> Praise Assembly</span>
+            </a>
+
+            <div class="sidebar">
+
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="~/Admin/Index" class="nav-link active">
+                                <i class="nav-icon fa fa-dashboard"></i>
+                                <p>
+                                    Dashboard
+                                    <i class="right fa fa-angle-le"></i>
+                                </p>
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    All Mails
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="/Admin/AllContactMessag" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Email List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    Members
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="/Admin/MemberList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Member List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Member" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add Member</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    Sermon Category
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="/Admin/SermonCategoryList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Category List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/AddSermonCategory" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add Category</p>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    Gallery
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="/Admin/PictureList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>pictures </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Gallery" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add New</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    Event
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="/Admin/EventList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Event List</p>
+                                    </a>
+                                    <a href="/Admin/AddEvent" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add Event</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/Admin/EventTypeList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Event Type</p>
+                                    </a>
+                                    <a href="/Admin/AddEventType" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add New Type</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    Chuch Department
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="/Admin/DepartmentList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Department List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/AddDept" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add Department</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    Sermon
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/SermonList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Sermon List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/AddSermon" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add Sermon</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    Church Worker
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/WorkerList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Worker List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Worker/JoinWorker" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add Worker</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-book"></i>
+                                <p>
+                                    Users
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/UserList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>User List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Account/AddUser" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add User</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-book"></i>
+                                <p>
+                                    Roles
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Account/RoleList" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Role List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Account/CreateRole" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Add Role</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                 
+                    </ul>
+                </nav>
+      
+            </div>
+        
+        </aside>
+
+        @RenderBody()
+
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2018 <a href="#">Praise Assembly</a>.</strong>
+            All rights reserved.
+
+        </footer>
+
+     
+    </div>
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/plugins/datatables/dataTables.bootstrap4.js"></script>
+
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <script src="~/Content/dist/js/demo.js"></script>
+   
+
+    @RenderSection("scripts", required: false)
+ 
+</body>
+</html>

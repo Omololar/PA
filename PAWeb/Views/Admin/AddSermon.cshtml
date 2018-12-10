@@ -1,0 +1,165 @@
+﻿@using PADomain
+@model PAWeb.SermonView
+
+@{
+    ViewBag.Title = "AddDept";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sermon</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Sermon</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+
+                <div class="card">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add New Department</h4>
+                            </div>
+                            <div class="modal-body">
+                                @using (Html.BeginForm("AddSermon", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.Id)
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SermonTitle, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.SermonTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.SermonTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SermonText, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.SermonText, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.SermonText, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SermonDate, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            <input type="date" name="SermonDate" class="form-dateInput" Value="mm/dd/yyyy" />
+
+                                            @Html.ValidationMessageFor(model => model.SermonDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.LongDescription, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            @Html.TextAreaFor(model => model.LongDescription, new { id = "cke", @class = "ckeditor" })
+                                            @Html.ValidationMessageFor(model => model.LongDescription, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.PreacherName, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.PreacherName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PreacherName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+                                            <input type="file" name="ImageFile" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" required />
+
+                                        </div>
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <img src="@Url.Content("~/Content/Images/")@Model.ImageUrl" width="150" height="150" class="img-upload" alt="Preacher's Image" />
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                    
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SermonCategoryName, htmlAttributes: new { @class = "control-label col-md-6" })
+                                        <div class="col-md-10">
+
+                                            @Html.DropDownListFor(model => model.SermonCategoryName, (IEnumerable<SelectListItem>)ViewBag.SermonCategory, "Select Category", new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-success" id="AddCategory">Add</button>
+                                        <button class="btn btn-success" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script type="text/javascript">
+    CKEDITOR.replace('cke');
+</script>
+@if (Model.Done)
+{
+    <script>
+        navigate("/Admin/EventList");
+
+        function navigate(href) {
+
+
+            $.ajax({
+                url: href,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#renderbody').html(result);
+                }
+            });
+
+        }
+    </script>
+}
+
+

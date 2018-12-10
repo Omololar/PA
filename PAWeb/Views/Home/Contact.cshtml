@@ -1,0 +1,128 @@
+﻿@using PADomain
+@model PAWeb.ContactModel
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ##### Breadcrumb Area Start ##### -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="map-area mt-50">
+    <div class="upcoming-events-heading bg-img bg-overlay bg-fixed" style="background-image: url(../../Content/img/bg-img/1.jpg);">
+    </div>
+</div>
+
+<section class="contact-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-content-area">
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="contact-content contact-information">
+                                <h4>Contact</h4>
+
+                                <p>(+234) 806 - 571 - 803</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="contact-content contact-information">
+                                <h4>Address</h4>
+                                <p>No. 49 Shekoni Omokoku Street,</p>
+                                <p>Alfa Bus Stop, Sangotedo, Lagos</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="contact-content contact-information">
+                                <h4>Services</h4>
+                                <p>Tuesday at 06:30pm <br />Thursday 6:30pm <br>Sunday at 08:00a.m </p>
+                                <p>Thanksgiving Service: Every First Sunday </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Contact Area End ##### -->
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-form section-padding-0-100">
+    <div class="container">
+        <div class="row">
+            <!-- Section Heading -->
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>Leave A Message</h2>
+                    <p>Your email address will not be published. Required fields are marked.</p>
+                    <p>(Prayer request, testimony, message and others)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <!-- Contact Form Area -->
+                <div class="contact-form-area">
+                    @using (Html.BeginForm("GetContactMessage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                      
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="contact-name">Full Name*:</label>
+                                <input type="text" class="form-control" name="FullName" id="contact-name" placeholder="Full Name" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="contact-name">Subject*:</label>
+                                <input type="text" class="form-control" name="Subject" id="contact-name" placeholder="e.g Prayer Request" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="contact-email">Email*:</label>
+                                <input type="email" class="form-control" name="FromEmail" id="contact-email" placeholder="myemail@gmail.com" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="contact-number">Phone*:</label>
+                                <input type="text" class="form-control" name="PhoneNumber" id="contact-number" placeholder="phone number" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="message">Message*:</label>
+                                <textarea class="form-control" name="Body" id="message" cols="30" rows="10" placeholder="Type Message Here" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" id="emailForm" class="btn crose-btn mt-15">Submit Now</button>
+                        </div>
+                    </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
