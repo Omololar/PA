@@ -1,0 +1,30 @@
+
+
+<div id="top-bar" class="dark">
+  <div class="container clearfix">
+    <div class="top-links" >
+      <ul>
+        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/register">Register</a></li>
+      </ul>
+      <!--<ul class="nav navbar-nav navbar-right">
+        <li class="nav-item" *ngIf="loggedIn()">
+          <a class="nav-link"  (click)="logout">
+            <i class="nav-icon cui-puzzle"></i> Logout
+          </a>
+        </li>
+      </ul>-->
+      
+    </div>
+    <div  class="dropdown navbar-right">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="logout">
+        Welcome user
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button"><i class="fa fa-user"></i>Edit Profile</button>
+        <button class="dropdown-item" type="button"><i class="fa fa-sign-out"></i>Logout</button>
+             </div>
+    </div>
+  </div>
+ 
+</div>

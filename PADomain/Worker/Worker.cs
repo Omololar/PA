@@ -8,7 +8,7 @@ namespace PADomain
 {
     public class Worker : Entity, IWorker
     {
-
+         
         public string WorkerName { get; set; }
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
@@ -25,14 +25,14 @@ namespace PADomain
         public string WaterBaptism { get; set; }
         public string Experience { get; set; }
         public string IsMarried { get; set; }
-        public string FileUrl { get; set; }
-        public string FilethunmbnailUrl { get; set; }
+        public string SODUrl { get; set; }
+        public string SODCert { get; set; }
 
         public string IsExperienced { get; set; }
 
         public string SpouseName { get; set; }
         public string NumberOfChildren { get; set; }
-        public DateTime MarriageAnniversary { get; set; }
+        public DateTime? MarriageAnniversary { get; set; }
         public string Profession { get; set; }
         public string ChurchBaptised { get; set; }
         public string BornAgain { get; set; }
@@ -42,8 +42,14 @@ namespace PADomain
         public string SOM { get; set; }
         public string SOD { get; set; }
         public string BC { get; set; }
-        public DateTime SOMYear { get; set; }
-        public DateTime SODYear { get; set; }
+        public string SOMYear { get; set; }
+        public string SODYear { get; set; }
+        public string BCCert { get ; set ; }
+        public string BCUrl { get ; set ; }
+        public string BaptismCert { get ; set ; }
+        public string BaptismUrl { get ; set; }
+
+        public string Allfiles { get; set; }
     }
 
 }

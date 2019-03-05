@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PADomain.WorkerFiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace PADomain
         IDepartmentRepo Department { get; }
         IContactRepo Contact { get; }
         IWorkerRepo Workers { get; }
+
+        IFileRepo WorkerFiles { get; }
         IDepartmentRepo Departments { get; }
         ISermonRepo Sermons { get; }
         IEventRepo Events { get; }

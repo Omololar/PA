@@ -154,7 +154,7 @@
             </div>
         </div>
     </div>
-      <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/birthday.jpeg);">
+    <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/birthday.jpeg);">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -165,7 +165,7 @@
                         {
                             <div class="hero-slides-content">
                                 <h2 data-animation="fadeInUp" data-delay="100ms">Happy Birthday to all our @item.DateOfBirth.ToString("MMMM") Celebrants </h2>
-                              
+
                                 <p data-animation="fadeInUp" data-delay="100ms"><strong style="color:skyblue">@item.MemberName :  <span> @item.DateOfBirth.ToString("MMMM, dd")</span></strong></p>
                             </div>
                         }
@@ -175,11 +175,11 @@
             </div>
         </div>
     </div>
-   
-     <!--Wedding-->
-    @foreach (var wed in Model.Members.OrderBy(i => i.WeddingAnniversary))
+
+    <!--Wedding-->
+    @foreach (var wed in Model.Members.OrderBy(i => i.WeddingAnniversary.HasValue))
     {
-        if (wed.WeddingAnniversary.Month == DateTime.Now.Month)
+        if (wed.WeddingAnniversary.Value.Month == DateTime.Now.Month)
         {
 
             <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/wedding2.jpeg);">
@@ -188,7 +188,7 @@
                         <div class="col-12">
                             <div class="hero-slides-content">
                                 <p data-animation="fadeInUp" data-delay="100ms">Happy Wedding Anniversary <strong style="background-color:palevioletred"> @wed.MemberName and @wed.SpouseName</strong></p>
-                                <p data-animation="fadeInUp" data-delay="300ms">@wed.WeddingAnniversary.ToString("MMMM")</p>
+                                <p data-animation="fadeInUp" data-delay="300ms">@wed.WeddingAnniversary.Value.ToString("dd")</p>
                                 <p data-animation="fadeInUp" data-delay="500ms">Praise Assembly Felicitate with you</p>
 
                             </div>
@@ -198,9 +198,10 @@
             </div>
         }
     }
-    @foreach (var wed in Model.Workers.OrderBy(i => i.MarriageAnniversary))
+
+    @foreach (var wed in Model.Workers.OrderBy(i => i.MarriageAnniversary.HasValue))
     {
-        if (wed.MarriageAnniversary.Month == DateTime.Now.Month)
+        if (wed.MarriageAnniversary.Value.Month == DateTime.Now.Month)
         {
 
             <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../../Content/img/bg-img/wedding2.jpeg);">
@@ -209,7 +210,7 @@
                         <div class="col-12">
                             <div class="hero-slides-content">
                                 <p data-animation="fadeInUp" data-delay="100ms">Happy Wedding Anniversary <strong style="background-color:palevioletred"> @wed.WorkerName and @wed.SpouseName</strong></p>
-                                <p data-animation="fadeInUp" data-delay="300ms">@wed.MarriageAnniversary.ToString("MMMM")</p>
+                                <p data-animation="fadeInUp" data-delay="300ms">@wed.MarriageAnniversary.Value.ToString("dd")</p>
                                 <p data-animation="fadeInUp" data-delay="500ms">Praise Assembly Felicitate with you</p>
 
                             </div>
@@ -220,10 +221,11 @@
         }
     }
 
+
     <!--Service Picture-->
     @foreach (var ev in Model.Pictures.OrderBy(i => i.EventDate))
     {
-        if (ev.EventDate.Month >= DateTime.Now.Month)
+        if (ev.EventDate.Month <= DateTime.Now.Month)
         {
 
             <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~/Content/images/")@ev.PictureThumbnailUrl);">

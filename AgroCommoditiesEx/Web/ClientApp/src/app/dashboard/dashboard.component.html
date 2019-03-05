@@ -1,0 +1,88 @@
+
+<div class="app aside-menu-show" style="background-color:#e4e5e6">
+  <div class="app-body">
+    <main class="main">Main Content</main>
+    <aside class="aside-menu">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab">
+           Profile
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" (click)="productToggle">
+            Tab 2
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#tab3" role="tab">
+            Tab 3
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane p-3 active" id="tab1" role="tabpanel">
+          <form [formGroup]="bankForm" (ngSubmit)="onSubmit(bankForm.values)">
+            <div>
+              <h2> Complete registration</h2>
+            </div>
+
+            <div class="form-group">
+              <label for="ContactAddress">ContactAddress</label>
+              <input type="text" formControlName="ContactAddress" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactAddress.errors }" />
+              <div *ngIf="submitted && f.ContactAddress.errors" class="invalid-feedback">
+                <div *ngIf="f.ContactAddress.errors.required">Contact address is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="BankName">Select your bank</label>
+              <select formControlName="BankName" class="browser-default custom-select">
+                <option value=""></option>
+                <option *ngFor="let bankName of BankName" value="{{bankName}}">
+                  {{bankName}}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="BankAccountNo">Account Number</label>
+              <input type="text" formControlName="BankAccountNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.BankAccountNo.errors }" />
+              <div *ngIf="submitted && f.BankAccountNo.errors" class="invalid-feedback">
+                <div *ngIf="f.BankAccountNo.errors.required">Account number is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="AccountName">Account Name</label>
+              <input type="text" formControlName="AccountName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.AccountName.errors }" />
+              <div *ngIf="submitted && f.AccountName.errors" class="invalid-feedback">
+                <div *ngIf="f.AccountName.errors.required">Account number is required</div>
+              </div>
+            </div>
+
+
+
+            <div>
+              <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit">Submit</button>
+                <a routerLink="/login" class="btn btn-link">Cancel</a>
+
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+        <div *ngIf="productMode" class="tab-pane p-3" id="tab2" role="tabpanel">
+
+         <app-product></app-product>
+
+        </div>
+        <div class="tab-pane p-3" id="tab3" role="tabpanel">
+          Tab 3 Content
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>

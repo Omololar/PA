@@ -15,7 +15,7 @@ namespace PAWeb
         {
             _uow = uow;
         }
-        public ActionResult Index()
+      public ActionResult Index()
         {
             var sermon = _uow.Sermons.GetAll();
             ViewBag.SermonCategory = _uow.SermonCategories.GetAll().Select(r => new SermonCategory
@@ -23,7 +23,6 @@ namespace PAWeb
                 SermonName = r.SermonName,
                 SermonDescription = r.SermonDescription
             });
-
             var sermonCat = _uow.SermonCategories.GetAll();
             var svm = new SermonViewModel
             {
@@ -33,31 +32,25 @@ namespace PAWeb
             };
             return View(svm);
         }
-
         public ActionResult SermonsbyCategory(string name)
         {
 
             var sermonscategory = _uow.Sermons.Find(sc => sc.SermonCategory.SermonName == name);
-
             var svm = new SermonViewModel
             {
                 Sermons = sermonscategory,
                 //SermonCategory = name
                 SermonCat = name
-
             };
             return View("Index", svm);
         }
         public ActionResult SermonDetails(Sermon sermon, int id)
         {
-
             var _sermon = _uow.Sermons.Get(id);
             var civm = new SermonIndexViewModel
             {
                 sermon = _sermon
             };
-
-
             return View(civm);
         }
         public ActionResult PrintPdf(Sermon s, int id)
@@ -79,9 +72,6 @@ namespace PAWeb
                 }
             };
             return pdfView;
-
         }
-
-
     }
 }

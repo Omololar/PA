@@ -27,13 +27,17 @@ namespace PADomain
         string WaterBaptism { get; set; }
         string Experience { get; set; }
         string IsMarried { get; set; }
-        string FileUrl { get; set; }
-        string FilethunmbnailUrl { get; set; }
+        string SODUrl { get; set; }
+        string SODCert { get; set; }
+        string BCCert { get; set; }
+        string BCUrl { get; set; }
+        string BaptismCert { get; set; }
+        string BaptismUrl { get; set; }
 
 
         string SpouseName { get; set; }
         string NumberOfChildren { get; set; }
-        DateTime MarriageAnniversary { get; set; }
+        DateTime? MarriageAnniversary { get; set; }
         string Profession { get; set; }
         string ChurchBaptised { get; set; }
         string BornAgain { get; set; }
@@ -44,8 +48,10 @@ namespace PADomain
         string SOM { get; set; }
         string SOD { get; set; }
         string BC { get; set; }
-        DateTime SOMYear { get; set; }
-        DateTime SODYear { get; set; }
+        string SOMYear { get; set; }
+        string SODYear { get; set; }
+
+        string Allfiles { get; set; }
     }
 
 }

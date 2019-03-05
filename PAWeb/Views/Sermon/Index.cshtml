@@ -44,12 +44,7 @@
 
                             <p>@item.ShortDescription</p>
                             <div class="read-more-share d-flex flex-wrap justify-content-between">
-                                <div >
-                                    @*<video width="320" controls>                                   
-                                       <source src="@Url.Content("~/Content/Media/")@item.SermonvideoThumbnail" type="video/mp4" />
-                                      
-                                    </video>*@
-                                </div>
+                              
                                 <div class="read-more-btn">
                                     <a href="@Url.Action("SermonDetails","Sermon", new { id = item.Id } )">Read More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                 </div>
@@ -92,8 +87,7 @@
                 {
                     <div class="col-12 col-sm-6 col-lg-4">
                         <div class="single-latest-sermons mb-100">
-                            @* <div class="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center"  style="background-image: url(@Url.Content("~/Content/images/")@item.ImageThumbnailUrl); ">
-            *@<div >
+                         <div >
                 <img src="@Url.Content("~/Content/images/")@item.ImageThumbnailUrl" alt="preacher :@item.PreacherName" />
 
             <!-- Date -->
@@ -101,7 +95,7 @@
                 <h6>@item.SermonDate.ToString("MMMM dd, yyyy") </h6>
             </div>
              </div>
-        @*</div>*@
+   
 
 
                             <div class="sermons-content">

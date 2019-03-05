@@ -18,6 +18,6 @@ namespace PADomain
         public string SpouseName { get; set; }
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime WeddingAnniversary { get; set; }
+        public DateTime? WeddingAnniversary { get; set; }
     }
 }

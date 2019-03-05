@@ -1,0 +1,106 @@
+<div class="container">
+  <a routerLink="/" class="logo">Agro Commodities Exchange</a>
+</div>
+<ul class="nav nav-pills nav-fill">-->
+<li class="nav-item">
+  <a class="nav-link active" routerLink="/">Home</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" routerLink="/about">About</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" routerLink="/contact">Contact</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link disabled" href="#">Disabled</a>
+  </li>
+</ul>
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="..." alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Third slide">
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="users">
+  <div *ngFor="let user of users.data" class="col-md-4 col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h6 class="card-title text-center">{{ user.productName }}</h6>
+      </div>
+      <div class="card-content collapse show">
+        <div class="card-body">
+
+          <div class="text-center row clearfix mb-2">
+            <div class="col-12">
+              <div class="bg-circ-img" style="border-radius: 50%; overflow: hidden; height: 80%; width: 80%; margin: auto;">
+                <img [src]="user.photoUrl">
+              </div>
+            </div>
+          </div>
+          <h3 class="text-center">NGN {{ user.price }} / MT</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-de mb-0">
+            <tbody>
+              <tr>
+                <td>Metric Tone Size</td>
+                <td><i class="icon-layers"></i> 1000 KG</td>
+              </tr>
+              <tr>
+                <td>Storage Fee / Month</td>
+                <td><i class="icon-layers"></i> NGN 1,000</td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: center;">
+
+                  <button type="button" id="3" class="btn-gradient-secondary view_commodity">Trade Commodity</button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+<ul *ngIf="users">
+  <li *ngFor="let user of users.data">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <img [src]="user.photoUrl">
+        <img [ngStyle]="{'background-image': 'url(' + user.photoUrl + ')'}">
+
+        <ul class="list-inline member-icons animate text-center">
+          <li><button class="btn btn-primary"><i class="fa fa-heart"></i></button></li>
+          <li><button class="btn btn-primary"><i class="fa fa-envelope"></i></button></li>
+        </ul>
+      </div>
+      <div class="text-center">
+        <h5>
+          <i class="fa fa-user">
+            {{ user.productName }} {{ user.price }}
+          </i>        
+        </h5>
+      </div>      
+    </div>
+    
+  </li>
+</ul>
+

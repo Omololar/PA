@@ -41,15 +41,9 @@
 
 
                             <div class="catagory-share-meta d-flex flex-wrap justify-content-between align-items-center">
-                                <div>
-                                    @*<video width="320" controls>
-                                        <source src="@Url.Content("~/Content/Media/")@Model.sermon.SermonvideoThumbnail" type="video/mp4" />
-
-                                    </video>*@
-                                </div>
-
+                               
                                 <div class="share">
-                                    @*<span>Share:</span>*@
+                                   
                                     <a href="@Url.Action("PrintPdf","Sermon", new { id = Model.sermon.Id })" data-toggle="tooltip" data-placement="top" title="Download Message"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
 
                                     <a href="https://www.facebook.com/rccgpraiseajah"><i class="fa fa-facebook" aria-hidden="true"></i></a>

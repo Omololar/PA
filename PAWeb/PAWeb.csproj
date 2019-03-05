@@ -255,6 +255,7 @@
     <Content Include="Content\js\DateCount.js" />
     <Content Include="Content\js\jquery\jquery-2.2.4.min.js" />
     <Content Include="Content\js\plugins\plugins.js" />
+    <Content Include="Content\js\worker.js" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\images\login.jpg" />
     <Content Include="Content\Login\js\main.js" />

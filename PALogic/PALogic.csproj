@@ -73,6 +73,38 @@
     <Compile Include="Migrations\201812082118342_deletedsermonvideo.Designer.cs">
       <DependentUpon>201812082118342_deletedsermonvideo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812100809243_addedentitiesToWorkerModel.cs" />
+    <Compile Include="Migrations\201812100809243_addedentitiesToWorkerModel.Designer.cs">
+      <DependentUpon>201812100809243_addedentitiesToWorkerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101145188_madeDatesnullableinWorker.cs" />
+    <Compile Include="Migrations\201812101145188_madeDatesnullableinWorker.Designer.cs">
+      <DependentUpon>201812101145188_madeDatesnullableinWorker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101153311_madeDatesnullableinWorker1.cs" />
+    <Compile Include="Migrations\201812101153311_madeDatesnullableinWorker1.Designer.cs">
+      <DependentUpon>201812101153311_madeDatesnullableinWorker1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101208213_changedDateToStringinWorker.cs" />
+    <Compile Include="Migrations\201812101208213_changedDateToStringinWorker.Designer.cs">
+      <DependentUpon>201812101208213_changedDateToStringinWorker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101411011_addedfile.cs" />
+    <Compile Include="Migrations\201812101411011_addedfile.Designer.cs">
+      <DependentUpon>201812101411011_addedfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101426222_addedfile1.cs" />
+    <Compile Include="Migrations\201812101426222_addedfile1.Designer.cs">
+      <DependentUpon>201812101426222_addedfile1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111442138_nullableWedAniversary.cs" />
+    <Compile Include="Migrations\201812111442138_nullableWedAniversary.Designer.cs">
+      <DependentUpon>201812111442138_nullableWedAniversary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111451202_nullableweddingMember.cs" />
+    <Compile Include="Migrations\201812111451202_nullableweddingMember.Designer.cs">
+      <DependentUpon>201812111451202_nullableweddingMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="News\NewsRepo.cs" />
     <Compile Include="PraiseDbContext.cs" />
@@ -80,6 +112,7 @@
     <Compile Include="Sermon\SermonCategoryRepository.cs" />
     <Compile Include="Sermon\SermonRepo.cs" />
     <Compile Include="User\UserRepo.cs" />
+    <Compile Include="WorkerFile\FileRepo.cs" />
     <Compile Include="Worker\WorkerRepo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +131,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812082118342_deletedsermonvideo.resx">
       <DependentUpon>201812082118342_deletedsermonvideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812100809243_addedentitiesToWorkerModel.resx">
+      <DependentUpon>201812100809243_addedentitiesToWorkerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101145188_madeDatesnullableinWorker.resx">
+      <DependentUpon>201812101145188_madeDatesnullableinWorker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101153311_madeDatesnullableinWorker1.resx">
+      <DependentUpon>201812101153311_madeDatesnullableinWorker1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101208213_changedDateToStringinWorker.resx">
+      <DependentUpon>201812101208213_changedDateToStringinWorker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101411011_addedfile.resx">
+      <DependentUpon>201812101411011_addedfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101426222_addedfile1.resx">
+      <DependentUpon>201812101426222_addedfile1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111442138_nullableWedAniversary.resx">
+      <DependentUpon>201812111442138_nullableWedAniversary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111451202_nullableweddingMember.resx">
+      <DependentUpon>201812111451202_nullableweddingMember.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

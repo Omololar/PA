@@ -74,6 +74,9 @@
     <Compile Include="Sermon\Sermon\Sermon.cs" />
     <Compile Include="User\IUser.cs" />
     <Compile Include="User\IUserRepo.cs" />
+    <Compile Include="WorkerFiles\File.cs" />
+    <Compile Include="WorkerFiles\IFile.cs" />
+    <Compile Include="WorkerFiles\IFileRepo.cs" />
     <Compile Include="Worker\IWorker.cs" />
     <Compile Include="Worker\IWorkerRepo.cs" />
     <Compile Include="Worker\Worker.cs" />

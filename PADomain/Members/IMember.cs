@@ -21,6 +21,6 @@ namespace PADomain
         string Profession { get; set; }
         string Married { get; set; }
         string SpouseName { get; set; }
-        DateTime WeddingAnniversary { get; set; }
+        DateTime? WeddingAnniversary { get; set; }
     }
 }

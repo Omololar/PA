@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using PADomain;
+using PADomain.WorkerFiles;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,6 +24,8 @@ namespace PALogic
 
         public DbSet<Member> Member { get; set; }
         public DbSet<News> News { get; set; }
+
+        public DbSet<Filess> WorkerFiles { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
         public DbSet<Department> Department { get; set; }
         public DbSet<Sermon> Sermon { get; set; }

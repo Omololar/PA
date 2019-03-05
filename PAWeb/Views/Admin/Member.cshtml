@@ -83,20 +83,38 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <label for="contact-name">Are you Married?*:</label>
-                                                <label for="contact-name">
-                                                    Yes
-                                                    <input type="radio" name="Married" Value="Yes" />
+                                 
+                                        <div class="row">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Are you Married?*:</label>
+                                                        <label for="contact-name">
+                                                            Yes
+                                                            <input type="radio" name="Married" Value="Yes" data-id="married" />
 
-                                                </label>
-                                                <label for="contact-name">
-                                                    No
-                                                    <input type="radio" name="Married" Value="No" />
+                                                        </label>
+                                                        <label for="contact-name">
+                                                            No
+                                                            <input type="radio" name="Married" Value="No" />
 
-                                                </label>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div id="married" class="none col-12 col-lg-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.SpouseName, htmlAttributes: new { @class = "control-label col-md-8" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="contact-name">Year*:</label>
+                                                    <input type="date" name="WeddingAnniversary" class="form-dateInput" Value="mm/dd/yyyy" />
+                                                </div>
                                             </div>
                                         </div>
 
@@ -118,20 +136,7 @@
                                         </div>
 
 
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.SpouseName, htmlAttributes: new { @class = "control-label col-md-8" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            @Html.LabelFor(model => model.WeddingAnniversary, htmlAttributes: new { @class = "control-label col-md-6" })
-                                            <div class="col-md-10">
-                                                <input type="text" name="WeddingAnniversary" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />
-                                                @Html.ValidationMessageFor(model => model.WeddingAnniversary, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
+                                       
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.MemberImageUrl, htmlAttributes: new { @class = "control-label col-md-8" })
                                             <div class="col-md-10">
@@ -146,7 +151,7 @@
                                         </div>
 
 
-                                      
+
 
                                         <div class="form-group">
                                             <div class="col-md-offset-2 col-md-10">
@@ -177,3 +182,21 @@
 
 @Scripts.Render("~/bundles/site")        
     
+    <script>
+        $(document).ready(function () {
+            $('#married').hide();
+           
+            $('input:radio[name=Married]').change(function () {
+                if (this.value == 'Yes') {
+                    $('#married').show();
+                }
+                else if (this.value == 'No') {
+                    $('#married').hide();
+                }
+            });
+
+           
+        });
+
+
+    </script>

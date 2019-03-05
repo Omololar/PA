@@ -1,0 +1,85 @@
+
+
+<div>
+
+  <form  [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.values)">
+
+    <div class="form-group">
+      <label for="Email">Email</label>
+      <input type="email" formControlName="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+      <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+        <div *ngIf="f.Email.errors.required">Email is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Password">Password</label>
+      <input type="password" formControlName="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" />
+      <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+        <div *ngIf="f.Password.errors.required">Password is required</div>
+        <div *ngIf="f.Password.errors.minlength">Password must be at least 6 characters</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary" (click)="loginUser">Login</button>
+        <a routerLink="/login" class="btn btn-link">Cancel</a>
+
+      </div>
+    </div>
+  </form>
+
+
+
+  <!--<form *ngIf="loggedIn()" [formGroup]="bankForm" (ngSubmit)="onSubmit(bankForm.values)">
+    <div>
+      <h2> Complete registration</h2>
+    </div>
+
+    <div class="form-group">
+      <label for="ContactAddress">ContactAddress</label>
+      <input type="text" formControlName="ContactAddress" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactAddress.errors }" />
+      <div *ngIf="submitted && f.ContactAddress.errors" class="invalid-feedback">
+        <div *ngIf="f.ContactAddress.errors.required">Contact address is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="BankName">Select your bank</label>
+      <select formControlName="BankName" class="browser-default custom-select">
+        <option value=""></option>
+        <option *ngFor="let bankName of BankName" value="{{bankName}}">
+          {{bankName}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="BankAccountNo">Account Number</label>
+      <input type="text" formControlName="BankAccountNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.BankAccountNo.errors }" />
+      <div *ngIf="submitted && f.BankAccountNo.errors" class="invalid-feedback">
+        <div *ngIf="f.BankAccountNo.errors.required">Account number is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="AccountName">Account Name</label>
+      <input type="text" formControlName="AccountName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.AccountName.errors }" />
+      <div *ngIf="submitted && f.AccountName.errors" class="invalid-feedback">
+        <div *ngIf="f.AccountName.errors.required">Account number is required</div>
+      </div>
+    </div>
+
+
+
+    <div>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit">Submit</button>
+        <a routerLink="/login" class="btn btn-link">Cancel</a>
+
+      </div>
+
+    </div>
+  </form>-->
+
+</div>

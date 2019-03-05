@@ -1,4 +1,6 @@
 ﻿using PADomain;
+using PADomain.WorkerFiles;
+using PALogic.WorkerFile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +28,12 @@ namespace PALogic
             Gallery = new GalleryRepo(context);
             News = new NewsRepo(context);
             Contact = new ContactRepo(context);
+            WorkerFiles = new FileRepo(context);
+
 
         }
 
+        public IFileRepo WorkerFiles { get; set; }
         public IContactRepo Contact { get; set; }
         public ISermonCategoryRepo SermonCategories { get; set; }
 

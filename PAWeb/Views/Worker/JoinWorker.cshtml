@@ -14,20 +14,26 @@
     <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/ckeditor")
 
+    <style>
+        .none {
+            display: none;
+        }
+    </style>
+
 </head>
 <body class="hold-transition sidebar-mini">
 
 
     <div class="wrapper">
-      <div class="content-wrapper">
-      
+        <div class="content-wrapper">
+
             <section class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">                     
+                    <div class="row mb-2">
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Join Departments</li>
+                                <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+                                <li class="breadcrumb-item active">Join Department</li>
                             </ol>
                         </div>
                     </div>
@@ -43,7 +49,7 @@
 
                         <div class="card">
                             <div class="modal-dialog">
-                                <div class="modal-content">                                    
+                                <div class="modal-content">
                                     <div class="modal-body">
 
                                         @using (Html.BeginForm("JoinWorker", "Worker", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -51,44 +57,42 @@
                                             @Html.AntiForgeryToken()
 
                                             @Html.HiddenFor(model => model.Id)
+
+                                           
                                             <div class="row">
-                                                <div class="col-10 col-lg-4">
-                                                    <div class="form-group">                                                 
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <input type="text" class="form-control" name="FirstName" placeholder="Surname*" required />
                                                     </div>
                                                 </div>
-                                                <div class="col-10 col-lg-4">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" name="LastName" placeholder="First Name*" required />
                                                     </div>
                                                 </div>
-                                                <div class="col-10 col-lg-4">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" name="OtherName" placeholder="Other Name*" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-10 col-lg-4">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" name="Address" placeholder="House Address*" required />
                                                     </div>
                                                 </div>
-                                                <div class="col-10 col-lg-4">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" name="PhoneNumber" placeholder="Phone Number*" required />
                                                     </div>
                                                 </div>
-                                                <div class="col-10 col-lg-4">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <input type="email" class="form-control" name="email" placeholder="E-mail*" />
                                                     </div>
                                                 </div>
-
-
                                             </div>
-
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -96,8 +100,6 @@
                                                         <input type="date" name="BirthDate" Value="mm/dd/yyyy" />
                                                     </div>
                                                 </div>
-                                         
-                                         
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="contact-name">Profession*:</label>
@@ -105,50 +107,52 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div class="row">
                                                 <div class="col-8 col-lg-4">
                                                     <div class="form-group">
+                                                        <label for="contact-name">Are you Married?*:</label>
+                                                        <label>Yes</label>
+                                                        <input type="radio" name='IsMarried' value='Yes' data-id="yes" />
+
+                                                        <label>No</label>
+                                                        <input type="radio" name='IsMarried' value='No' data-id="no" />
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div id="married" class="none row">
+                                                    <div class="col-md-3">
+                                                        <label>Spouse Name</label>
                                                         <div class="form-group">
-                                                            <label for="contact-name">Are you Married?*:</label>
-                                                            <label for="contact-name">
-                                                                Yes
-                                                                <input type="radio" name="IsMarried" Value="Yes" />
+                                                            <input type="text" class="form-control" name="SpouseName" placeholder="Spouse Name" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Number of Children</label>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="NumberOfChildren" placeholder="How many children" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
 
-                                                            </label>
-                                                            <label for="contact-name">
-                                                                No
-                                                                <input type="radio" name="IsMarried" Value="No" />
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Wedding Anniversary:</label>
+                                                            <input type="date" name="MarriageAnniversary" class="form-dateInput" Value="mm/dd/yyyy" />
 
-                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-lg-4">
-                                                    <div class="form-group">
-                                                        <label for="contact-name">Spouse Name:</label>
-                                                        <input type="text" class="form-control" name="SpouseName" placeholder="Spouse Name" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-lg-4">
-                                                    <div class="form-group">
-                                                        <label for="contact-name">Children:</label>
-                                                        <input type="text" class="form-control" name="NumberOfChildren" placeholder="How many children" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-10">
-                                                    <div class="form-group">
-                                                        <label for="contact-name">Wedding Anniversary:</label>
-                                                        <input type="date" name="MarriageAnniversary" class="form-dateInput" Value="mm/dd/yyyy" />
+                                            </div>
 
-                                                    </div>
-                                                </div>
+                                            <div class="row">
                                                 <div class="col-12 col-lg-4">
                                                     <div class="form-group">
                                                         <div class="form-group">
                                                             <label for="contact-name">Are you Born Again*:</label>
                                                             <label for="contact-name">
                                                                 Yes
-                                                                <input type="radio" name="BornAgain" Value="Yes" />
+                                                                <input type="radio" name="BornAgain" Value="Yes" data-id="bornagain" />
 
                                                             </label>
                                                             <label for="contact-name">
@@ -160,17 +164,13 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-12 col-lg-4">
+                                                <div id="bornagain" class="none col-12 col-lg-4">
                                                     <div class="form-group">
                                                         <label for="contact-name">Year*:</label>
                                                         <input type="date" name="YearBornAgain" class="form-dateInput" Value="mm/dd/yyyy" />
-
-                                                        @*<input type="text" name="YearBornAgain" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />*@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -189,18 +189,32 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="contact-name">Baptism Date*:</label>
-                                                        <input type="date" name="BaptismDate" class="form-dateInput" Value="mm/dd/yyyy" />
+                                                <div class="row" id="waterbaptised">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Baptism Date*:</label>
+                                                            <input type="date" name="BaptismDate" class="form-dateInput" Value="mm/dd/yyyy" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Where were you baptised?*:</label>
+                                                            <input type="text" name="ChurchBaptised" class="form-control" placeholder="Church Name" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="contact-name">Upload Baptism Certificate*:</label>
+                                                            <input type="file" name="BaptismCert" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" width="150" height="150" placeholder="Upload Files" />
+                                                        </div>
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <img src="@Url.Content("~/Content/Images/")@Model.BaptismUrl" width="150" height="150" class="img-upload" alt="File" />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="contact-name">Where were you baptised?*:</label>
-                                                        <input type="text" name="ChurchBaptised" class="form-control" placeholder="Church Name" />
-                                                    </div>
-                                                </div>
+
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <div class="form-group">
@@ -224,9 +238,7 @@
                                                         <input type="date" name="JoinDate" class="form-dateInput" Value="mm/dd/yyyy" />
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                             <div class="row">
 
                                                 <div class="col-12 col-lg-6">
@@ -252,7 +264,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-lg-12">
+                                                <div class="col-12 col-lg-12" id="Experience">
                                                     <div class="form-group">
                                                         <label for="contact-name">Experience  :</label>
                                                         <textarea name="Experience" class="form-control" cols="30" rows="5" placeholder="Type Experience here if any"></textarea>
@@ -278,15 +290,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-lg-4">
+                                                <div class="col-12 col-lg-4" id="SOM">
                                                     <div class="form-group">
                                                         <label for="contact-name">Year:</label>
                                                         <input type="date" name="SOMYear" class="form-dateInput" Value="mm/dd/yyyy" />
-
-                                                        @*<input type="text" name="JoinDate" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />*@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-12 col-lg-6">
                                                     <div class="form-group">
@@ -305,15 +316,25 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row" id="SOD">
                                                 <div class="col-12 col-lg-4">
                                                     <div class="form-group">
                                                         <label for="contact-name">Year:</label>
                                                         <input type="date" name="SODYear" class="form-dateInput" Value="mm/dd/yyyy" />
-
-                                                        @*<input type="text" name="JoinDate" class="form-dateInput" placeholder="mm/dd/yyyy hh:mm:ss" />*@
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Upload SOD Certificate*:</label>
+                                                        <input type="file" name="SODCert" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" width="150" height="150" placeholder="Upload Files" />
+                                                    </div>
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <img src="@Url.Content("~/Content/Images/")@Model.SODUrl" width="150" height="150" class="img-upload" alt="File" />
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-12 col-lg-8">
                                                     <div class="form-group">
@@ -332,34 +353,44 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-12 col-lg-6" id="BC">
+                                                    <div class="form-group">
+                                                        <label for="contact-name">Upload Bible College Certificate*:</label>
+                                                        <input type="file" name="BCCert" class="imgInp form-control" width="150" height="150" accept=".png,.jpg,.jpeg,.gif,.tif" placeholder="Upload Picture" />
+                                                    </div>
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <img src="@Url.Content("~/Content/Images/")@Model.BCUrl" width="150" height="150" class="img-upload" alt=" Image" />
+                                                    </div>
+                                                </div>
                                             </div>
+
+
 
                                             <div class="row">
                                                 <div class="col-12 col-lg-6">
                                                     <div class="form-group">
                                                         <label for="contact-name">Upload Picture*:</label>
-                                                        <input type="file" name="ImageFile" class="imgInp form-control" width="150" height="150" accept=".png,.jpg,.jpeg,.gif,.tif" required placeholder="Upload Picture" />
+                                                        <input type="file" name="ImageFile" class="imgInp form-control" width="150" height="150" accept=".png,.jpg,.jpeg,.gif,.tif" placeholder="Upload Picture" />
                                                     </div>
                                                     <div class="col-md-offset-2 col-md-10">
                                                         <img src="@Url.Content("~/Content/Images/")@Model.ImageUrl" width="150" height="150" class="img-upload" alt=" Image" />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-12 col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="contact-name">Upload File*:</label>
-                                                        <input type="file" name="FilethunmbnailUrl" class="imgInp form-control" accept=".png,.jpg,.jpeg,.gif,.tif" width="150" height="150" placeholder="Upload Files" />
-                                                    </div>
-                                                    <div class="col-md-offset-2 col-md-10">
-                                                        <img src="@Url.Content("~/Content/Images/")@Model.FileUrl" width="150" height="150" class="img-upload" alt="File" />
-                                                    </div>
-                                                </div>
+
                                             </div>
+
+
                                             <div class="modal-footer">
                                                 <input type="submit" id="btn-submit" value="Submit" class="btn btn-primary" />
 
                                             </div>
-                                         }
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10 text-success">
+                                                    @ViewBag.UploadStatus
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
 
                                 </div>
@@ -384,14 +415,19 @@
         </footer>
 
     </div>
-    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
-    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
-    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>
-    <script src="~/Content/plugins/datatables/dataTables.bootstrap4.js"></script>
 
-    <script src="~/Content/dist/js/adminlte.min.js"></script>
-    <script src="~/Content/dist/js/demo.js"></script>
+        <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+        <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+        <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <script src="~/Content/dist/js/adminlte.min.js"></script>
+   
+        <script src="~/Content/js/worker.js"></script>
+
+
+    <script>
+        
+    </script>
 
 </body>
 </html>
