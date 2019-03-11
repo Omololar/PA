@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders,  HttpParams } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './user';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
   baseurl = 'https://localhost:5001/api/account';
   userToken: any;
 
-  constructor(private httpClient: HttpClient) { }
- 
+  constructor(private httpClient: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+}
+
   createUser(user) {
     return this.httpClient.post(`${this.baseurl}/register/`, user);
   }
@@ -24,25 +27,26 @@ export class AuthService {
     return this.httpClient.post(`${this.baseurl}/login/`, model)
       .pipe(
         map(user => {
-           
-           // const user = response.json();
-        if (user) {
-          localStorage.setItem('token', JSON.stringify(user));
-          this.userToken = JSON.stringify(user);
-          console.log(this.userToken);
-            }
-      })
-       );
+
+         
+          if (user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+
+            //this.userToken = JSON.stringify(user);
+            console.log(this.userToken);
+          }
+        })
+      );
   }
 
   logout() {
     // remove user from local storage to log user out
-    
+
     localStorage.removeItem('token');
   }
   public get loggedIn(): boolean {
     return localStorage.getItem('token') !== null;
   }
- 
-}
 
+}

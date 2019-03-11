@@ -1,20 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth.service';
-import { first, tap, catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { User } from '../user';
-import { Observable, of } from 'rxjs';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.sass']
 })
 export class RegisterComponent implements OnInit {
-
- 
   baseurl = 'https://localhost:5001/api/account/';
 
 
@@ -47,14 +41,16 @@ export class RegisterComponent implements OnInit {
 
   createUser() {
     var user = this.registerForm.value;
-    this.authService.createUser(user).subscribe(result  => {if(result){
-      this.router.navigate(['/login'], { queryParams: { brandNew: true, email: user.Email}});                         
-          }},
-     
+    this.authService.createUser(user).subscribe(result => {
+      if (result) {
+        this.router.navigate(['/login'], { queryParams: { brandNew: true, email: user.Email } });
+      }
+    },
+
       error => {
         console.log(error);
         this.loading = false;
-    });
+      });
   };
 
 

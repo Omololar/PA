@@ -20,6 +20,7 @@ namespace Domain.Manager
 
         public async Task<BankDetailsModel> AddUserBankDetails(UserModel model)
         {
+            model.Validate();
             var user = await _repo.GetById(model.UserId);
 
             var bankdetails = _repo.AddUserBankDetails(user);

@@ -1,16 +1,137 @@
 
-<div class="app aside-menu-show" style="background-color:#e4e5e6">
+<nb-card>
+  <nb-card-body>
+
+    <nb-tabset>
+      <nb-tab tabTitle="Users">
+        <p>Complete  <strong>Registration</strong>.</p>
+        <button nbButton hero status="primary" (click)="open()">compplette</button>
+
+        <form [formGroup]="bankForm" (ngSubmit)="onSubmit(bankForm.values)">
+          <div>
+            <h2> Complete registration</h2>
+          </div>
+
+          <div class="form-group">
+            <label for="ContactAddress">ContactAddress</label>
+            <input type="text" formControlName="ContactAddress" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactAddress.errors }" />
+            <div *ngIf="submitted && f.ContactAddress.errors" class="invalid-feedback">
+              <div *ngIf="f.ContactAddress.errors.required">Contact address is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="BankName">Select your bank</label>
+            <select formControlName="BankName" class="browser-default custom-select">
+              <option value=""></option>
+              <option *ngFor="let bankName of BankName" value="{{bankName}}">
+                {{bankName}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="BankAccountNo">Account Number</label>
+            <input type="text" formControlName="BankAccountNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.BankAccountNo.errors }" />
+            <div *ngIf="submitted && f.BankAccountNo.errors" class="invalid-feedback">
+              <div *ngIf="f.BankAccountNo.errors.required">Account number is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="AccountName">Account Name</label>
+            <input type="text" formControlName="AccountName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.AccountName.errors }" />
+            <div *ngIf="submitted && f.AccountName.errors" class="invalid-feedback">
+              <div *ngIf="f.AccountName.errors.required">Account number is required</div>
+            </div>
+          </div>
+
+
+
+          <div>
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit">Submit</button>
+              <!--<a routerLink="/login" class="btn btn-link">Cancel</a>-->
+
+            </div>
+
+          </div>
+        </form>
+
+      </nb-tab>
+      <nb-tab tabTitle="Products">
+        <p>Add <strong>Products</strong>.</p>
+
+        <div class="row" *ngIf="users">
+          <div *ngFor="let user of users.data" class="col-md-4 col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="card-title text-center">{{ user.productName }}</h6>
+              </div>
+              <div class="card-content collapse show">
+                <div class="panel-body">
+                  <div class="bg-circ-img" style="border-radius: 50%; overflow: hidden; height: 80%; width: 80%; margin: auto;">
+                    <img [src]="user.photoUrl">
+                  </div>
+
+                  <h3 class="text-center">NGN {{ user.price }} / MT</h3>
+
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-de mb-0">
+                    <tbody>
+                      <tr>
+                        <td>Metric Tone Size</td>
+                        <td><i class="icon-layers"></i> 1000 KG</td>
+                      </tr>
+                      <tr>
+                        <td>Storage Fee / Month</td>
+                        <td><i class="icon-layers"></i> NGN 1,000</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" style="text-align: center;">
+
+                          <button type="button" id="3" class="btn-gradient-secondary view_commodity">Trade Commodity</button>
+
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </nb-tab>
+      <nb-tab tabTitle="Transactions">
+        <p>List of <strong>transactions</strong>.</p>
+      </nb-tab>
+    </nb-tabset>
+
+  </nb-card-body>
+</nb-card>
+<input placeholder="Enter your username" nbInput nbPopover="Username is already taken" nbPopoverTrigger="noop">
+
+<div>
+  <button nbButton size="small" status="success" (click)="open()">Open Popover</button>
+  <button nbButton size="small" status="danger" (click)="close()">Close Popover</button>
+</div>
+<!--<div class="app aside-menu-show" style="background-color:#e4e5e6">
   <div class="app-body">
     <main class="main">Main Content</main>
     <aside class="aside-menu">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab">
-           Profile
+            Profile
           </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" (click)="productToggle">
+          <a class="nav-link" data-toggle="tab" href="#tab2" role="tab">
             Tab 2
           </a>
         </li>
@@ -66,23 +187,66 @@
             <div>
               <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit">Submit</button>
-                <a routerLink="/login" class="btn btn-link">Cancel</a>
-
-              </div>
+                    </div>
 
             </div>
           </form>
 
         </div>
-        <div *ngIf="productMode" class="tab-pane p-3" id="tab2" role="tabpanel">
 
-         <app-product></app-product>
+
+        <div class="tab-pane p-3 active" id="tab2" role="tabpanel">
+
+           <div class="row" *ngIf="users">
+      <div *ngFor="let user of users.data" class="col-md-4 col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h6 class="card-title text-center">{{ user.productName }}</h6>
+          </div>
+          <div class="card-content collapse show">
+            <div class="panel-body">
+              <div class="bg-circ-img" style="border-radius: 50%; overflow: hidden; height: 80%; width: 80%; margin: auto;">
+                <img [src]="user.photoUrl">
+              </div>
+
+              <h3 class="text-center">NGN {{ user.price }} / MT</h3>
+
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-de mb-0">
+                <tbody>
+                  <tr>
+                    <td>Metric Tone Size</td>
+                    <td><i class="icon-layers"></i> 1000 KG</td>
+                  </tr>
+                  <tr>
+                    <td>Storage Fee / Month</td>
+                    <td><i class="icon-layers"></i> NGN 1,000</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align: center;">
+
+                      <button type="button" id="3" class="btn-gradient-secondary view_commodity">Trade Commodity</button>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
         </div>
+
+
         <div class="tab-pane p-3" id="tab3" role="tabpanel">
           Tab 3 Content
         </div>
       </div>
     </aside>
   </div>
-</div>
+</div>-->

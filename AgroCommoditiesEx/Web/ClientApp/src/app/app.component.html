@@ -1,6 +1,24 @@
-<app-nav></app-nav>
-<section>
-  <router-outlet></router-outlet>
-</section>
+<nb-layout>
+  <nb-layout-header fixed>
+
+    <a routerLink="/" class="navbar-item">
+      <img src="../../assets/agrox.PNG" alt="">
+    </a>
+
+    <app-nav></app-nav>
+
+    
+
+    <!-- Insert header here -->
+  </nb-layout-header>
+  <nb-layout-column>
+
+    <router-outlet></router-outlet>
+
+  </nb-layout-column>
+  <nb-layout-footer fixed>
+    <!-- Insert footer here -->
+  </nb-layout-footer>
+</nb-layout>
 
 

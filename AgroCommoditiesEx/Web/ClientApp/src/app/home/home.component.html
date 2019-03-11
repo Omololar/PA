@@ -1,54 +1,102 @@
-<div class="container">
-  <a routerLink="/" class="logo">Agro Commodities Exchange</a>
-</div>
-<ul class="nav nav-pills nav-fill">-->
-<li class="nav-item">
-  <a class="nav-link active" routerLink="/">Home</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" routerLink="/about">About</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" routerLink="/contact">Contact</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link disabled" href="#">Disabled</a>
-  </li>
-</ul>
+<nav class="navbar navbar-default">
+  <div class="container">
 
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item"><a class="btn btn-info" (click)="loginToggle()">Login</a></li>
+      <li class="nav-item"><a class="btn btn-info" (click)="registerToggle()">Register</a></li>
+    </ul>
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="..." alt="First slide">
+    <div *ngIf="registerMode" class="container">
+      <div class="col-md-4 col-md-offset-4">
+        <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Second slide">
+
+    <div *ngIf="loginMode" class="container">
+      <div class="col-md-4 col-md-offset-4">
+        <app-login (cancelLogin)="cancelLoginMode($event)"></app-login>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Third slide">
-    </div>
+
   </div>
-</div>
+</nav>
 
-<div class="row" *ngIf="users">
+<nb-layout-column left>
+  page content left
+</nb-layout-column>
+<nb-layout-column center>Page Content center</nb-layout-column>
+<nb-layout-column right>Page Content right</nb-layout-column>
+
+
+<nb-card status="success">
+  <nb-card-header>THE SCOPE</nb-card-header>
+  <nb-card-body>
+    AgroEX is an online marketplace that provides opportunities with unmatched
+    access to agricultural commodity deals, market information, warehousing,
+    truck delivery and secure payment options so that one can trade with
+    simplicity from anywhere, anytime. It connects thousands of farmers,
+    wholesalers, traders, and food processors who are looking to buy or sell
+    agro-commodities with transparency and security
+  </nb-card-body>
+ 
+</nb-card>
+
+<nb-card status="danger">
+  <nb-card-header>Nebula</nb-card-header>
+  <nb-card-body>
+    A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+    Originally, nebula was a name for any diffuse astronomical object,
+    including galaxies beyond the Milky Way.
+  </nb-card-body>
+  <nb-card-footer>By Wikipedia</nb-card-footer>
+</nb-card>
+
+<nb-card>
+  <nb-card-header>Buy Good</nb-card-header>
+  <nb-card-body>
+    <nb-stepper orientation="horizontal">
+      <nb-step [label]="labelOne">
+        <ng-template #labelOne>First Step </ng-template>
+        <h3>Select goods to purchase</h3>
+        <button nbButton outline status="info" disabled nbStepperNext>prev</button>
+        <button nbButton outline status="info" nbStepperNext>next</button>
+      </nb-step>
+      <nb-step [label]="labelTwo">
+        <ng-template #labelTwo>Second step</ng-template>
+        <h3>Select the quantity</h3>
+        <button nbButton outline status="info" nbStepperPrevious>prev</button>
+        <button nbButton outline status="info" nbStepperNext>next</button>
+      </nb-step>
+      <nb-step label="Third step">
+        <h3>Select Store goods Or</h3>
+        <button nbButton outline status="info" nbStepperPrevious>prev</button>
+        <button nbButton outline status="info" nbStepperNext>next</button>
+      </nb-step>
+      <nb-step [label]="labelFour">
+        <ng-template #labelFour>Fourth step</ng-template>
+        <h3>Select Deliver</h3>
+        <button nbButton outline status="info" nbStepperPrevious>prev</button>
+        <button nbButton outline status="info" disabled nbStepperNext>next</button>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>
+<!--<div class="row" *ngIf="users">
   <div *ngFor="let user of users.data" class="col-md-4 col-sm-12">
     <div class="card">
       <div class="card-header">
         <h6 class="card-title text-center">{{ user.productName }}</h6>
       </div>
       <div class="card-content collapse show">
-        <div class="card-body">
-
-          <div class="text-center row clearfix mb-2">
-            <div class="col-12">
-              <div class="bg-circ-img" style="border-radius: 50%; overflow: hidden; height: 80%; width: 80%; margin: auto;">
-                <img [src]="user.photoUrl">
-              </div>
-            </div>
+        <div class="panel-body">
+          <div class="bg-circ-img" style="border-radius: 50%; overflow: hidden; height: 80%; width: 80%; margin: auto;">
+            <img [src]="user.photoUrl">
           </div>
+
           <h3 class="text-center">NGN {{ user.price }} / MT</h3>
+
         </div>
+
         <div class="table-responsive">
           <table class="table table-de mb-0">
             <tbody>
@@ -63,7 +111,7 @@
               <tr>
                 <td colspan="2" style="text-align: center;">
 
-                  <button type="button" id="3" class="btn-gradient-secondary view_commodity">Trade Commodity</button>
+                  <a routerLink="/login" class="btn-gradient-secondary view_commodity">Trade Commodity</a>
 
                 </td>
               </tr>
@@ -73,34 +121,4 @@
       </div>
     </div>
   </div>
-
-
-
-</div>
-
-
-
-<ul *ngIf="users">
-  <li *ngFor="let user of users.data">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <img [src]="user.photoUrl">
-        <img [ngStyle]="{'background-image': 'url(' + user.photoUrl + ')'}">
-
-        <ul class="list-inline member-icons animate text-center">
-          <li><button class="btn btn-primary"><i class="fa fa-heart"></i></button></li>
-          <li><button class="btn btn-primary"><i class="fa fa-envelope"></i></button></li>
-        </ul>
-      </div>
-      <div class="text-center">
-        <h5>
-          <i class="fa fa-user">
-            {{ user.productName }} {{ user.price }}
-          </i>        
-        </h5>
-      </div>      
-    </div>
-    
-  </li>
-</ul>
-
+</div>-->

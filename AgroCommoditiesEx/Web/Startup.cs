@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Threading.Tasks;
 using Web.Data;
 //using Web.Data;
 
@@ -82,6 +83,23 @@ namespace Web
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
              .AddJwtBearer(options => {
+                 options.Events = new JwtBearerEvents
+                 {
+                     OnTokenValidated = context =>
+                     {
+                         var userService = context.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
+                         var userId = (context.Principal.Identity.Name);
+                         var user = userService.GetById(userId);
+                         if (user == null)
+                         {
+                             // return unauthorized if user no longer exists
+                             context.Fail("Unauthorized");
+                         }
+                         return Task.CompletedTask;
+                     }
+                 };
+                 options.RequireHttpsMetadata = false;
+                 options.SaveToken = true;
                  options.TokenValidationParameters = new TokenValidationParameters
                  {
                      ValidateIssuerSigningKey = true,

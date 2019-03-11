@@ -9,10 +9,11 @@ import { BankService } from '../bank.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  
+
+
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -50,11 +51,11 @@ export class LoginComponent implements OnInit {
     this.show_dialog = !this.show_dialog;
     var user = this.loginForm.value;
     this.authService.login(user).subscribe(result => {
-     this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard']);
       //this.router.navigate(['/']);
-        
-        //this.router.navigate(['/'], { queryParams: { brandNew: true, email: user.Email } });
-     
+
+      //this.router.navigate(['/'], { queryParams: { brandNew: true, email: user.Email } });
+
     },
 
       error => {

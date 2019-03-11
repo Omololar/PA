@@ -58,6 +58,8 @@ namespace Infrastructure.Repositories
            // user.UserId = model.Id;
 
             var result = await _userManager.CreateAsync(user, model.Password);
+
+            
             if (result.Succeeded)
             {
                 var claims = new List<Claim>

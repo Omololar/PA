@@ -1,0 +1,9 @@
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+
+$nb-themes: nb-register-theme((
+  color-bg: #F7F9F9,
+  shadow: 0 1px 2px 0 #9e9f69,
+  layout-bg: #ffffff,
+  color-fg: #222222
+), default, default);

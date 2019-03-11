@@ -2,7 +2,7 @@
 
 <div>
 
-  <form  [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.values)">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.values)">
 
     <div class="form-group">
       <label for="Email">Email</label>
@@ -24,7 +24,7 @@
     <div>
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary" (click)="loginUser">Login</button>
-        <a routerLink="/login" class="btn btn-link">Cancel</a>
+        <a  class="btn btn-link">Cancel</a>
 
       </div>
     </div>

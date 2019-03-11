@@ -1,30 +1,71 @@
+<nav class="navbar navbar-default">
+  <div class="container">
 
-
-<div id="top-bar" class="dark">
-  <div class="container clearfix">
-    <div class="top-links" >
-      <ul>
-        <li><a routerLink="/login">Login</a></li>
-        <li><a routerLink="/register">Register</a></li>
-      </ul>
-      <!--<ul class="nav navbar-nav navbar-right">
-        <li class="nav-item" *ngIf="loggedIn()">
-          <a class="nav-link"  (click)="logout">
-            <i class="nav-icon cui-puzzle"></i> Logout
-          </a>
+    <div class="navbar">
+      <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/">Home</a>
         </li>
-      </ul>-->
-      
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/buy">Buy</a>
+        </li>
+      </ul>
+
+
+
+      <nb-card>
+        <nb-card-body>
+
+          <nb-user size="large"
+                   name="John Doe"
+                   title="Engineer"
+                   badgeText="99+"
+                   badgeStatus="success"
+                   badgePosition="bottom right">
+          </nb-user>
+
+        </nb-card-body>
+      </nb-card>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" dropdown>
+          <a (click)="false" class="dropdown-toggle" dropdownToggle>Welcome <!--{{authService.decodedToken?.unique_name | titlecase}}--> <span class="caret"></span></a>
+          <ul class="dropdown-menu" *dropdownMenu>
+            <li>
+              <a [routerLink]="['/member/edit']">
+                <i class="fa fa-user"></i>Edit Pro
+                file
+                la
+              </a>
+              e
+            </li>
+            ro
+            la
+            <li role="separator" class="divider"></li>
+            <li><a (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+
+
+
+      <!--<ul class="nav navbar-nav navbar-right">
+    <li class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
+    <li class="nav-item"><a routerLink="/register">Register</a></li>
+
+
+    <li class="nav-item"><a class="btn btn-primary btn-lg" (click)="loginToggle()">lets login</a></li>
+    <li class="nav-item"><a routerLink="/register">letsregister</a></li>
+
+  </ul>-->
     </div>
-    <div  class="dropdown navbar-right">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="logout">
-        Welcome user
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button"><i class="fa fa-user"></i>Edit Profile</button>
-        <button class="dropdown-item" type="button"><i class="fa fa-sign-out"></i>Logout</button>
-             </div>
-    </div>
+   
   </div>
- 
-</div>
+</nav>
+

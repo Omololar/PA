@@ -42,7 +42,7 @@ namespace Web.Controllers
       
         [HttpGet("register")]
         public IActionResult Register()
-        {
+        {           
             var usertypes = _config.GetSection(Constants.USER_TYPE).Value;
 
             var values = usertypes.Split(',');          

@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BankService {
-
   baseurl = 'https://localhost:5001/api/bank';
 
   constructor(private httpClient: HttpClient) { }
@@ -19,6 +18,6 @@ export class BankService {
     return this.httpClient.post(`${this.baseurl}/addbankdetails/`, model);
   }
 
-  
+
 
 }

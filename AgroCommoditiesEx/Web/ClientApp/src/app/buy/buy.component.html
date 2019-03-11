@@ -1,0 +1,34 @@
+
+<form [formGroup]="buyForm" (ngSubmit)="Buy(buyForm.values)">
+  <div *ngFor="let user of users.data" class="col-md-4 col-sm-12">
+
+    <div class="radio-inline">
+      <label for="productName">{{user.productName}}</label>
+      <label for="price">{{user.price}}</label>
+      <input type="hidden" formControlName="productName" value="{{user.productName}}" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+      <input type="hidden" formControlName="price" value="{{user.price}}" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+      <input type="checkbox" value="{{user.productName}}" formControlName="option" />
+
+      <!--<input type="checkbox" formControlName="productName" value="{{user.productName}}" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productName.errors }" />-->
+    </div>
+   
+  </div>
+  <div class="radio-inline">
+    <label for="Quantity">Quantity</label>
+    <input type="email" formControlName="Quantity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Quantity.errors }" />
+    <div *ngIf="submitted && f.Quantity.errors" class="invalid-feedback">
+      <div *ngIf="f.Quantity.errors.required">Quantity required</div>
+    </div>
+  </div>
+
+
+  
+  <div class="radio-inline">
+    <input type="radio" value="Store" formControlName="option" />
+    <label class="radio-label"> Store</label>
+    <input type="radio" value="Deliver" formControlName="option" />
+    <label class="radio-label">Deliver</label>
+  </div>
+</form>
+
+<pre>{{buyForm.value | json}}</pre>

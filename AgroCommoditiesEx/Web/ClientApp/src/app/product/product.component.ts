@@ -2,17 +2,14 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ProductService } from '../product.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.sass']
 })
 export class ProductComponent implements OnInit {
-  
-  
+
 
   productForm: FormGroup;
 
@@ -27,7 +24,7 @@ export class ProductComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-       // this.url = event.target.result;
+        // this.url = event.target.result;
       }
     }
   }
@@ -46,12 +43,12 @@ export class ProductComponent implements OnInit {
       ProductName: new FormControl('', [Validators.required]),
       PhotoUrl: new FormControl('', [Validators.required]),
       Price: new FormControl('', [Validators.required, Validators.minLength(6)]),
-     });
+    });
   }
 
-  
-  
-  
+
+
+
   get f() { return this.productForm.controls; }
 
   addProduct() {
